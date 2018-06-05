@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.highwebsite.mapper.TActMapper" >
+  <resultMap id="BaseResultMap" type="com.highwebsite.pojo.TAct" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="poster_address" property="posterAddress" jdbcType="VARCHAR" />
+    <result column="introduction" property="introduction" jdbcType="VARCHAR" />
+    <result column="deadline" property="deadline" jdbcType="TIMESTAMP" />
+    <result column="md5" property="md5" jdbcType="CHAR" />
+    <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="data_date" property="dataDate" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="null1" property="null1" jdbcType="VARCHAR" />
+    <result column="null2" property="null2" jdbcType="VARCHAR" />
+    <result column="null3" property="null3" jdbcType="VARCHAR" />
+    <result column="null4" property="null4" jdbcType="VARCHAR" />
+    <result column="null5" property="null5" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.highwebsite.pojo.TAct" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, poster_address, introduction, deadline, md5, start_date, data_date, end_date, 
+    null1, null2, null3, null4, null5
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.highwebsite.pojo.TActExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from T_ACT
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.highwebsite.pojo.TActExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from T_ACT
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from T_ACT
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T_ACT
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.highwebsite.pojo.TActExample" >
+    delete from T_ACT
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.highwebsite.pojo.TAct" >
+    insert into T_ACT (id, poster_address, introduction, 
+      deadline, md5, start_date, 
+      data_date, end_date, null1, 
+      null2, null3, null4, 
+      null5, content)
+    values (#{id,jdbcType=INTEGER}, #{posterAddress,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, 
+      #{deadline,jdbcType=TIMESTAMP}, #{md5,jdbcType=CHAR}, #{startDate,jdbcType=TIMESTAMP}, 
+      #{dataDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, #{null1,jdbcType=VARCHAR}, 
+      #{null2,jdbcType=VARCHAR}, #{null3,jdbcType=VARCHAR}, #{null4,jdbcType=VARCHAR}, 
+      #{null5,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.highwebsite.pojo.TAct" >
+    insert into T_ACT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="posterAddress != null" >
+        poster_address,
+      </if>
+      <if test="introduction != null" >
+        introduction,
+      </if>
+      <if test="deadline != null" >
+        deadline,
+      </if>
+      <if test="md5 != null" >
+        md5,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="dataDate != null" >
+        data_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="null1 != null" >
+        null1,
+      </if>
+      <if test="null2 != null" >
+        null2,
+      </if>
+      <if test="null3 != null" >
+        null3,
+      </if>
+      <if test="null4 != null" >
+        null4,
+      </if>
+      <if test="null5 != null" >
+        null5,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="posterAddress != null" >
+        #{posterAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="deadline != null" >
+        #{deadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="md5 != null" >
+        #{md5,jdbcType=CHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataDate != null" >
+        #{dataDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="null1 != null" >
+        #{null1,jdbcType=VARCHAR},
+      </if>
+      <if test="null2 != null" >
+        #{null2,jdbcType=VARCHAR},
+      </if>
+      <if test="null3 != null" >
+        #{null3,jdbcType=VARCHAR},
+      </if>
+      <if test="null4 != null" >
+        #{null4,jdbcType=VARCHAR},
+      </if>
+      <if test="null5 != null" >
+        #{null5,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.highwebsite.pojo.TActExample" resultType="java.lang.Integer" >
+    select count(*) from T_ACT
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update T_ACT
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.posterAddress != null" >
+        poster_address = #{record.posterAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.introduction != null" >
+        introduction = #{record.introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deadline != null" >
+        deadline = #{record.deadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.md5 != null" >
+        md5 = #{record.md5,jdbcType=CHAR},
+      </if>
+      <if test="record.startDate != null" >
+        start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dataDate != null" >
+        data_date = #{record.dataDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endDate != null" >
+        end_date = #{record.endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.null1 != null" >
+        null1 = #{record.null1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null2 != null" >
+        null2 = #{record.null2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null3 != null" >
+        null3 = #{record.null3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null4 != null" >
+        null4 = #{record.null4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null5 != null" >
+        null5 = #{record.null5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update T_ACT
+    set id = #{record.id,jdbcType=INTEGER},
+      poster_address = #{record.posterAddress,jdbcType=VARCHAR},
+      introduction = #{record.introduction,jdbcType=VARCHAR},
+      deadline = #{record.deadline,jdbcType=TIMESTAMP},
+      md5 = #{record.md5,jdbcType=CHAR},
+      start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      data_date = #{record.dataDate,jdbcType=TIMESTAMP},
+      end_date = #{record.endDate,jdbcType=TIMESTAMP},
+      null1 = #{record.null1,jdbcType=VARCHAR},
+      null2 = #{record.null2,jdbcType=VARCHAR},
+      null3 = #{record.null3,jdbcType=VARCHAR},
+      null4 = #{record.null4,jdbcType=VARCHAR},
+      null5 = #{record.null5,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update T_ACT
+    set id = #{record.id,jdbcType=INTEGER},
+      poster_address = #{record.posterAddress,jdbcType=VARCHAR},
+      introduction = #{record.introduction,jdbcType=VARCHAR},
+      deadline = #{record.deadline,jdbcType=TIMESTAMP},
+      md5 = #{record.md5,jdbcType=CHAR},
+      start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      data_date = #{record.dataDate,jdbcType=TIMESTAMP},
+      end_date = #{record.endDate,jdbcType=TIMESTAMP},
+      null1 = #{record.null1,jdbcType=VARCHAR},
+      null2 = #{record.null2,jdbcType=VARCHAR},
+      null3 = #{record.null3,jdbcType=VARCHAR},
+      null4 = #{record.null4,jdbcType=VARCHAR},
+      null5 = #{record.null5,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.highwebsite.pojo.TAct" >
+    update T_ACT
+    <set >
+      <if test="posterAddress != null" >
+        poster_address = #{posterAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="deadline != null" >
+        deadline = #{deadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="md5 != null" >
+        md5 = #{md5,jdbcType=CHAR},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataDate != null" >
+        data_date = #{dataDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="null1 != null" >
+        null1 = #{null1,jdbcType=VARCHAR},
+      </if>
+      <if test="null2 != null" >
+        null2 = #{null2,jdbcType=VARCHAR},
+      </if>
+      <if test="null3 != null" >
+        null3 = #{null3,jdbcType=VARCHAR},
+      </if>
+      <if test="null4 != null" >
+        null4 = #{null4,jdbcType=VARCHAR},
+      </if>
+      <if test="null5 != null" >
+        null5 = #{null5,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.highwebsite.pojo.TAct" >
+    update T_ACT
+    set poster_address = #{posterAddress,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      deadline = #{deadline,jdbcType=TIMESTAMP},
+      md5 = #{md5,jdbcType=CHAR},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      data_date = #{dataDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      null1 = #{null1,jdbcType=VARCHAR},
+      null2 = #{null2,jdbcType=VARCHAR},
+      null3 = #{null3,jdbcType=VARCHAR},
+      null4 = #{null4,jdbcType=VARCHAR},
+      null5 = #{null5,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.highwebsite.pojo.TAct" >
+    update T_ACT
+    set poster_address = #{posterAddress,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      deadline = #{deadline,jdbcType=TIMESTAMP},
+      md5 = #{md5,jdbcType=CHAR},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      data_date = #{dataDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      null1 = #{null1,jdbcType=VARCHAR},
+      null2 = #{null2,jdbcType=VARCHAR},
+      null3 = #{null3,jdbcType=VARCHAR},
+      null4 = #{null4,jdbcType=VARCHAR},
+      null5 = #{null5,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

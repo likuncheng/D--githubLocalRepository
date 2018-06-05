@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.highwebsite.mapper1.CompanyDetailsMapper">
+
+<select id="findAllJobsByCompanyName" parameterType="java.lang.String" resultType="com.highwebsite.pojo.T_JOB_PUB">
+	SELECT * from T_JOB_PUB WHERE company_name=#{value}
+</select>
+
+<select id="findAllEvasByCompanyName" parameterType="java.lang.String" resultType="com.highwebsite.pojo.T_INT_EVA">
+	SELECT * from T_INT_EVA WHERE company_name=#{value}
+</select>
+
+<select id="findCompanyByName" parameterType="java.lang.String" resultType="com.highwebsite.pojo.T_Com_Info">
+	SELECT * from T_COM_INFO WHERE company_name=#{value}
+</select>
+
+
+</mapper>

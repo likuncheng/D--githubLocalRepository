@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.highwebsite.mapper.TComRegiMapper" >
+  <resultMap id="BaseResultMap" type="com.highwebsite.pojo.TComRegi" >
+    <id column="register_id" property="registerId" jdbcType="VARCHAR" />
+    <result column="passwd" property="passwd" jdbcType="VARCHAR" />
+    <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="data_date" property="dataDate" jdbcType="TIMESTAMP" />
+    <result column="null1" property="null1" jdbcType="VARCHAR" />
+    <result column="null2" property="null2" jdbcType="VARCHAR" />
+    <result column="null3" property="null3" jdbcType="VARCHAR" />
+    <result column="null4" property="null4" jdbcType="VARCHAR" />
+    <result column="null5" property="null5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    register_id, passwd, start_date, end_date, data_date, null1, null2, null3, null4, 
+    null5
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.highwebsite.pojo.TComRegiExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from T_COM_REGI
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_COM_REGI
+    where register_id = #{registerId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_COM_REGI
+    where register_id = #{registerId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.highwebsite.pojo.TComRegiExample" >
+    delete from T_COM_REGI
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.highwebsite.pojo.TComRegi" >
+    insert into T_COM_REGI (register_id, passwd, start_date, 
+      end_date, data_date, null1, 
+      null2, null3, null4, 
+      null5)
+    values (#{registerId,jdbcType=VARCHAR}, #{passwd,jdbcType=VARCHAR}, #{startDate,jdbcType=TIMESTAMP}, 
+      #{endDate,jdbcType=TIMESTAMP}, #{dataDate,jdbcType=TIMESTAMP}, #{null1,jdbcType=VARCHAR}, 
+      #{null2,jdbcType=VARCHAR}, #{null3,jdbcType=VARCHAR}, #{null4,jdbcType=VARCHAR}, 
+      #{null5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.highwebsite.pojo.TComRegi" >
+    insert into T_COM_REGI
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="registerId != null" >
+        register_id,
+      </if>
+      <if test="passwd != null" >
+        passwd,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="dataDate != null" >
+        data_date,
+      </if>
+      <if test="null1 != null" >
+        null1,
+      </if>
+      <if test="null2 != null" >
+        null2,
+      </if>
+      <if test="null3 != null" >
+        null3,
+      </if>
+      <if test="null4 != null" >
+        null4,
+      </if>
+      <if test="null5 != null" >
+        null5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="registerId != null" >
+        #{registerId,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null" >
+        #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataDate != null" >
+        #{dataDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="null1 != null" >
+        #{null1,jdbcType=VARCHAR},
+      </if>
+      <if test="null2 != null" >
+        #{null2,jdbcType=VARCHAR},
+      </if>
+      <if test="null3 != null" >
+        #{null3,jdbcType=VARCHAR},
+      </if>
+      <if test="null4 != null" >
+        #{null4,jdbcType=VARCHAR},
+      </if>
+      <if test="null5 != null" >
+        #{null5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.highwebsite.pojo.TComRegiExample" resultType="java.lang.Integer" >
+    select count(*) from T_COM_REGI
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update T_COM_REGI
+    <set >
+      <if test="record.registerId != null" >
+        register_id = #{record.registerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.passwd != null" >
+        passwd = #{record.passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startDate != null" >
+        start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endDate != null" >
+        end_date = #{record.endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dataDate != null" >
+        data_date = #{record.dataDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.null1 != null" >
+        null1 = #{record.null1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null2 != null" >
+        null2 = #{record.null2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null3 != null" >
+        null3 = #{record.null3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null4 != null" >
+        null4 = #{record.null4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null5 != null" >
+        null5 = #{record.null5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update T_COM_REGI
+    set register_id = #{record.registerId,jdbcType=VARCHAR},
+      passwd = #{record.passwd,jdbcType=VARCHAR},
+      start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      end_date = #{record.endDate,jdbcType=TIMESTAMP},
+      data_date = #{record.dataDate,jdbcType=TIMESTAMP},
+      null1 = #{record.null1,jdbcType=VARCHAR},
+      null2 = #{record.null2,jdbcType=VARCHAR},
+      null3 = #{record.null3,jdbcType=VARCHAR},
+      null4 = #{record.null4,jdbcType=VARCHAR},
+      null5 = #{record.null5,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.highwebsite.pojo.TComRegi" >
+    update T_COM_REGI
+    <set >
+      <if test="passwd != null" >
+        passwd = #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataDate != null" >
+        data_date = #{dataDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="null1 != null" >
+        null1 = #{null1,jdbcType=VARCHAR},
+      </if>
+      <if test="null2 != null" >
+        null2 = #{null2,jdbcType=VARCHAR},
+      </if>
+      <if test="null3 != null" >
+        null3 = #{null3,jdbcType=VARCHAR},
+      </if>
+      <if test="null4 != null" >
+        null4 = #{null4,jdbcType=VARCHAR},
+      </if>
+      <if test="null5 != null" >
+        null5 = #{null5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where register_id = #{registerId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.highwebsite.pojo.TComRegi" >
+    update T_COM_REGI
+    set passwd = #{passwd,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      data_date = #{dataDate,jdbcType=TIMESTAMP},
+      null1 = #{null1,jdbcType=VARCHAR},
+      null2 = #{null2,jdbcType=VARCHAR},
+      null3 = #{null3,jdbcType=VARCHAR},
+      null4 = #{null4,jdbcType=VARCHAR},
+      null5 = #{null5,jdbcType=VARCHAR}
+    where register_id = #{registerId,jdbcType=VARCHAR}
+  </update>
+</mapper>

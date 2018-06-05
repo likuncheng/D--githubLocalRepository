@@ -1,0 +1,703 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.highwebsite.mapper.TCandIn1Mapper" >
+  <resultMap id="BaseResultMap" type="com.highwebsite.pojo.TCandIn1" >
+    <id column="USER_ID" property="userId" jdbcType="CHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="position_applied" property="positionApplied" jdbcType="VARCHAR" />
+    <result column="resume_name" property="resumeName" jdbcType="VARCHAR" />
+    <result column="previous_company_1" property="previousCompany1" jdbcType="VARCHAR" />
+    <result column="school_1" property="school1" jdbcType="VARCHAR" />
+    <result column="specialty_1" property="specialty1" jdbcType="VARCHAR" />
+    <result column="education" property="education" jdbcType="VARCHAR" />
+    <result column="work_experience_date" property="workExperienceDate" jdbcType="DOUBLE" />
+    <result column="expected_salary" property="expectedSalary" jdbcType="CHAR" />
+    <result column="delivery_time" property="deliveryTime" jdbcType="TIMESTAMP" />
+    <result column="position_type" property="positionType" jdbcType="CHAR" />
+    <result column="previous_company_2" property="previousCompany2" jdbcType="VARCHAR" />
+    <result column="hiredate_2" property="hiredate2" jdbcType="TIMESTAMP" />
+    <result column="departure_2" property="departure2" jdbcType="TIMESTAMP" />
+    <result column="hiredate_1" property="hiredate1" jdbcType="TIMESTAMP" />
+    <result column="departure_1" property="departure1" jdbcType="TIMESTAMP" />
+    <result column="previous_position_1" property="previousPosition1" jdbcType="VARCHAR" />
+    <result column="previous_position_2" property="previousPosition2" jdbcType="VARCHAR" />
+    <result column="graduation_date_1" property="graduationDate1" jdbcType="TIMESTAMP" />
+    <result column="school_2" property="school2" jdbcType="VARCHAR" />
+    <result column="specialty_2" property="specialty2" jdbcType="VARCHAR" />
+    <result column="graduation_date_2" property="graduationDate2" jdbcType="TIMESTAMP" />
+    <result column="self-description" property="selfDescription" jdbcType="VARCHAR" />
+    <result column="supplement" property="supplement" jdbcType="VARCHAR" />
+    <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="data_date" property="dataDate" jdbcType="TIMESTAMP" />
+    <result column="null1" property="null1" jdbcType="VARCHAR" />
+    <result column="null2" property="null2" jdbcType="VARCHAR" />
+    <result column="null3" property="null3" jdbcType="VARCHAR" />
+    <result column="null4" property="null4" jdbcType="VARCHAR" />
+    <result column="null5" property="null5" jdbcType="VARCHAR" />
+    <result column="null6" property="null6" jdbcType="VARCHAR" />
+    <result column="null7" property="null7" jdbcType="VARCHAR" />
+    <result column="com_app_id" property="comAppId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    USER_ID, name, position_applied, resume_name, previous_company_1, school_1, specialty_1, 
+    education, work_experience_date, expected_salary, delivery_time, position_type, previous_company_2, 
+    hiredate_2, departure_2, hiredate_1, departure_1, previous_position_1, previous_position_2, 
+    graduation_date_1, school_2, specialty_2, graduation_date_2, self-description, supplement, 
+    start_date, end_date, data_date, null1, null2, null3, null4, null5, null6, null7, 
+    com_app_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.highwebsite.pojo.TCandIn1Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from T_CAND_IN_1
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_CAND_IN_1
+    where USER_ID = #{userId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_CAND_IN_1
+    where USER_ID = #{userId,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.highwebsite.pojo.TCandIn1Example" >
+    delete from T_CAND_IN_1
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.highwebsite.pojo.TCandIn1" >
+    insert into T_CAND_IN_1 (USER_ID, name, position_applied, 
+      resume_name, previous_company_1, school_1, 
+      specialty_1, education, work_experience_date, 
+      expected_salary, delivery_time, position_type, 
+      previous_company_2, hiredate_2, departure_2, 
+      hiredate_1, departure_1, previous_position_1, 
+      previous_position_2, graduation_date_1, school_2, 
+      specialty_2, graduation_date_2, self-description, 
+      supplement, start_date, end_date, 
+      data_date, null1, null2, 
+      null3, null4, null5, 
+      null6, null7, com_app_id
+      )
+    values (#{userId,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{positionApplied,jdbcType=VARCHAR}, 
+      #{resumeName,jdbcType=VARCHAR}, #{previousCompany1,jdbcType=VARCHAR}, #{school1,jdbcType=VARCHAR}, 
+      #{specialty1,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, #{workExperienceDate,jdbcType=DOUBLE}, 
+      #{expectedSalary,jdbcType=CHAR}, #{deliveryTime,jdbcType=TIMESTAMP}, #{positionType,jdbcType=CHAR}, 
+      #{previousCompany2,jdbcType=VARCHAR}, #{hiredate2,jdbcType=TIMESTAMP}, #{departure2,jdbcType=TIMESTAMP}, 
+      #{hiredate1,jdbcType=TIMESTAMP}, #{departure1,jdbcType=TIMESTAMP}, #{previousPosition1,jdbcType=VARCHAR}, 
+      #{previousPosition2,jdbcType=VARCHAR}, #{graduationDate1,jdbcType=TIMESTAMP}, #{school2,jdbcType=VARCHAR}, 
+      #{specialty2,jdbcType=VARCHAR}, #{graduationDate2,jdbcType=TIMESTAMP}, #{selfDescription,jdbcType=VARCHAR}, 
+      #{supplement,jdbcType=VARCHAR}, #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, 
+      #{dataDate,jdbcType=TIMESTAMP}, #{null1,jdbcType=VARCHAR}, #{null2,jdbcType=VARCHAR}, 
+      #{null3,jdbcType=VARCHAR}, #{null4,jdbcType=VARCHAR}, #{null5,jdbcType=VARCHAR}, 
+      #{null6,jdbcType=VARCHAR}, #{null7,jdbcType=VARCHAR}, #{comAppId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.highwebsite.pojo.TCandIn1" >
+    insert into T_CAND_IN_1
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="positionApplied != null" >
+        position_applied,
+      </if>
+      <if test="resumeName != null" >
+        resume_name,
+      </if>
+      <if test="previousCompany1 != null" >
+        previous_company_1,
+      </if>
+      <if test="school1 != null" >
+        school_1,
+      </if>
+      <if test="specialty1 != null" >
+        specialty_1,
+      </if>
+      <if test="education != null" >
+        education,
+      </if>
+      <if test="workExperienceDate != null" >
+        work_experience_date,
+      </if>
+      <if test="expectedSalary != null" >
+        expected_salary,
+      </if>
+      <if test="deliveryTime != null" >
+        delivery_time,
+      </if>
+      <if test="positionType != null" >
+        position_type,
+      </if>
+      <if test="previousCompany2 != null" >
+        previous_company_2,
+      </if>
+      <if test="hiredate2 != null" >
+        hiredate_2,
+      </if>
+      <if test="departure2 != null" >
+        departure_2,
+      </if>
+      <if test="hiredate1 != null" >
+        hiredate_1,
+      </if>
+      <if test="departure1 != null" >
+        departure_1,
+      </if>
+      <if test="previousPosition1 != null" >
+        previous_position_1,
+      </if>
+      <if test="previousPosition2 != null" >
+        previous_position_2,
+      </if>
+      <if test="graduationDate1 != null" >
+        graduation_date_1,
+      </if>
+      <if test="school2 != null" >
+        school_2,
+      </if>
+      <if test="specialty2 != null" >
+        specialty_2,
+      </if>
+      <if test="graduationDate2 != null" >
+        graduation_date_2,
+      </if>
+      <if test="selfDescription != null" >
+        self-description,
+      </if>
+      <if test="supplement != null" >
+        supplement,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="dataDate != null" >
+        data_date,
+      </if>
+      <if test="null1 != null" >
+        null1,
+      </if>
+      <if test="null2 != null" >
+        null2,
+      </if>
+      <if test="null3 != null" >
+        null3,
+      </if>
+      <if test="null4 != null" >
+        null4,
+      </if>
+      <if test="null5 != null" >
+        null5,
+      </if>
+      <if test="null6 != null" >
+        null6,
+      </if>
+      <if test="null7 != null" >
+        null7,
+      </if>
+      <if test="comAppId != null" >
+        com_app_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=CHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="positionApplied != null" >
+        #{positionApplied,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeName != null" >
+        #{resumeName,jdbcType=VARCHAR},
+      </if>
+      <if test="previousCompany1 != null" >
+        #{previousCompany1,jdbcType=VARCHAR},
+      </if>
+      <if test="school1 != null" >
+        #{school1,jdbcType=VARCHAR},
+      </if>
+      <if test="specialty1 != null" >
+        #{specialty1,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="workExperienceDate != null" >
+        #{workExperienceDate,jdbcType=DOUBLE},
+      </if>
+      <if test="expectedSalary != null" >
+        #{expectedSalary,jdbcType=CHAR},
+      </if>
+      <if test="deliveryTime != null" >
+        #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="positionType != null" >
+        #{positionType,jdbcType=CHAR},
+      </if>
+      <if test="previousCompany2 != null" >
+        #{previousCompany2,jdbcType=VARCHAR},
+      </if>
+      <if test="hiredate2 != null" >
+        #{hiredate2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="departure2 != null" >
+        #{departure2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hiredate1 != null" >
+        #{hiredate1,jdbcType=TIMESTAMP},
+      </if>
+      <if test="departure1 != null" >
+        #{departure1,jdbcType=TIMESTAMP},
+      </if>
+      <if test="previousPosition1 != null" >
+        #{previousPosition1,jdbcType=VARCHAR},
+      </if>
+      <if test="previousPosition2 != null" >
+        #{previousPosition2,jdbcType=VARCHAR},
+      </if>
+      <if test="graduationDate1 != null" >
+        #{graduationDate1,jdbcType=TIMESTAMP},
+      </if>
+      <if test="school2 != null" >
+        #{school2,jdbcType=VARCHAR},
+      </if>
+      <if test="specialty2 != null" >
+        #{specialty2,jdbcType=VARCHAR},
+      </if>
+      <if test="graduationDate2 != null" >
+        #{graduationDate2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="selfDescription != null" >
+        #{selfDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="supplement != null" >
+        #{supplement,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataDate != null" >
+        #{dataDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="null1 != null" >
+        #{null1,jdbcType=VARCHAR},
+      </if>
+      <if test="null2 != null" >
+        #{null2,jdbcType=VARCHAR},
+      </if>
+      <if test="null3 != null" >
+        #{null3,jdbcType=VARCHAR},
+      </if>
+      <if test="null4 != null" >
+        #{null4,jdbcType=VARCHAR},
+      </if>
+      <if test="null5 != null" >
+        #{null5,jdbcType=VARCHAR},
+      </if>
+      <if test="null6 != null" >
+        #{null6,jdbcType=VARCHAR},
+      </if>
+      <if test="null7 != null" >
+        #{null7,jdbcType=VARCHAR},
+      </if>
+      <if test="comAppId != null" >
+        #{comAppId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.highwebsite.pojo.TCandIn1Example" resultType="java.lang.Integer" >
+    select count(*) from T_CAND_IN_1
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update T_CAND_IN_1
+    <set >
+      <if test="record.userId != null" >
+        USER_ID = #{record.userId,jdbcType=CHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.positionApplied != null" >
+        position_applied = #{record.positionApplied,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resumeName != null" >
+        resume_name = #{record.resumeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.previousCompany1 != null" >
+        previous_company_1 = #{record.previousCompany1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.school1 != null" >
+        school_1 = #{record.school1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialty1 != null" >
+        specialty_1 = #{record.specialty1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.education != null" >
+        education = #{record.education,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workExperienceDate != null" >
+        work_experience_date = #{record.workExperienceDate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.expectedSalary != null" >
+        expected_salary = #{record.expectedSalary,jdbcType=CHAR},
+      </if>
+      <if test="record.deliveryTime != null" >
+        delivery_time = #{record.deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.positionType != null" >
+        position_type = #{record.positionType,jdbcType=CHAR},
+      </if>
+      <if test="record.previousCompany2 != null" >
+        previous_company_2 = #{record.previousCompany2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hiredate2 != null" >
+        hiredate_2 = #{record.hiredate2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.departure2 != null" >
+        departure_2 = #{record.departure2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.hiredate1 != null" >
+        hiredate_1 = #{record.hiredate1,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.departure1 != null" >
+        departure_1 = #{record.departure1,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.previousPosition1 != null" >
+        previous_position_1 = #{record.previousPosition1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.previousPosition2 != null" >
+        previous_position_2 = #{record.previousPosition2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.graduationDate1 != null" >
+        graduation_date_1 = #{record.graduationDate1,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.school2 != null" >
+        school_2 = #{record.school2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialty2 != null" >
+        specialty_2 = #{record.specialty2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.graduationDate2 != null" >
+        graduation_date_2 = #{record.graduationDate2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.selfDescription != null" >
+        self-description = #{record.selfDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplement != null" >
+        supplement = #{record.supplement,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startDate != null" >
+        start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endDate != null" >
+        end_date = #{record.endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dataDate != null" >
+        data_date = #{record.dataDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.null1 != null" >
+        null1 = #{record.null1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null2 != null" >
+        null2 = #{record.null2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null3 != null" >
+        null3 = #{record.null3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null4 != null" >
+        null4 = #{record.null4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null5 != null" >
+        null5 = #{record.null5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null6 != null" >
+        null6 = #{record.null6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null7 != null" >
+        null7 = #{record.null7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.comAppId != null" >
+        com_app_id = #{record.comAppId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update T_CAND_IN_1
+    set USER_ID = #{record.userId,jdbcType=CHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      position_applied = #{record.positionApplied,jdbcType=VARCHAR},
+      resume_name = #{record.resumeName,jdbcType=VARCHAR},
+      previous_company_1 = #{record.previousCompany1,jdbcType=VARCHAR},
+      school_1 = #{record.school1,jdbcType=VARCHAR},
+      specialty_1 = #{record.specialty1,jdbcType=VARCHAR},
+      education = #{record.education,jdbcType=VARCHAR},
+      work_experience_date = #{record.workExperienceDate,jdbcType=DOUBLE},
+      expected_salary = #{record.expectedSalary,jdbcType=CHAR},
+      delivery_time = #{record.deliveryTime,jdbcType=TIMESTAMP},
+      position_type = #{record.positionType,jdbcType=CHAR},
+      previous_company_2 = #{record.previousCompany2,jdbcType=VARCHAR},
+      hiredate_2 = #{record.hiredate2,jdbcType=TIMESTAMP},
+      departure_2 = #{record.departure2,jdbcType=TIMESTAMP},
+      hiredate_1 = #{record.hiredate1,jdbcType=TIMESTAMP},
+      departure_1 = #{record.departure1,jdbcType=TIMESTAMP},
+      previous_position_1 = #{record.previousPosition1,jdbcType=VARCHAR},
+      previous_position_2 = #{record.previousPosition2,jdbcType=VARCHAR},
+      graduation_date_1 = #{record.graduationDate1,jdbcType=TIMESTAMP},
+      school_2 = #{record.school2,jdbcType=VARCHAR},
+      specialty_2 = #{record.specialty2,jdbcType=VARCHAR},
+      graduation_date_2 = #{record.graduationDate2,jdbcType=TIMESTAMP},
+      self-description = #{record.selfDescription,jdbcType=VARCHAR},
+      supplement = #{record.supplement,jdbcType=VARCHAR},
+      start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      end_date = #{record.endDate,jdbcType=TIMESTAMP},
+      data_date = #{record.dataDate,jdbcType=TIMESTAMP},
+      null1 = #{record.null1,jdbcType=VARCHAR},
+      null2 = #{record.null2,jdbcType=VARCHAR},
+      null3 = #{record.null3,jdbcType=VARCHAR},
+      null4 = #{record.null4,jdbcType=VARCHAR},
+      null5 = #{record.null5,jdbcType=VARCHAR},
+      null6 = #{record.null6,jdbcType=VARCHAR},
+      null7 = #{record.null7,jdbcType=VARCHAR},
+      com_app_id = #{record.comAppId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.highwebsite.pojo.TCandIn1" >
+    update T_CAND_IN_1
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="positionApplied != null" >
+        position_applied = #{positionApplied,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeName != null" >
+        resume_name = #{resumeName,jdbcType=VARCHAR},
+      </if>
+      <if test="previousCompany1 != null" >
+        previous_company_1 = #{previousCompany1,jdbcType=VARCHAR},
+      </if>
+      <if test="school1 != null" >
+        school_1 = #{school1,jdbcType=VARCHAR},
+      </if>
+      <if test="specialty1 != null" >
+        specialty_1 = #{specialty1,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="workExperienceDate != null" >
+        work_experience_date = #{workExperienceDate,jdbcType=DOUBLE},
+      </if>
+      <if test="expectedSalary != null" >
+        expected_salary = #{expectedSalary,jdbcType=CHAR},
+      </if>
+      <if test="deliveryTime != null" >
+        delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="positionType != null" >
+        position_type = #{positionType,jdbcType=CHAR},
+      </if>
+      <if test="previousCompany2 != null" >
+        previous_company_2 = #{previousCompany2,jdbcType=VARCHAR},
+      </if>
+      <if test="hiredate2 != null" >
+        hiredate_2 = #{hiredate2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="departure2 != null" >
+        departure_2 = #{departure2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hiredate1 != null" >
+        hiredate_1 = #{hiredate1,jdbcType=TIMESTAMP},
+      </if>
+      <if test="departure1 != null" >
+        departure_1 = #{departure1,jdbcType=TIMESTAMP},
+      </if>
+      <if test="previousPosition1 != null" >
+        previous_position_1 = #{previousPosition1,jdbcType=VARCHAR},
+      </if>
+      <if test="previousPosition2 != null" >
+        previous_position_2 = #{previousPosition2,jdbcType=VARCHAR},
+      </if>
+      <if test="graduationDate1 != null" >
+        graduation_date_1 = #{graduationDate1,jdbcType=TIMESTAMP},
+      </if>
+      <if test="school2 != null" >
+        school_2 = #{school2,jdbcType=VARCHAR},
+      </if>
+      <if test="specialty2 != null" >
+        specialty_2 = #{specialty2,jdbcType=VARCHAR},
+      </if>
+      <if test="graduationDate2 != null" >
+        graduation_date_2 = #{graduationDate2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="selfDescription != null" >
+        self-description = #{selfDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="supplement != null" >
+        supplement = #{supplement,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataDate != null" >
+        data_date = #{dataDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="null1 != null" >
+        null1 = #{null1,jdbcType=VARCHAR},
+      </if>
+      <if test="null2 != null" >
+        null2 = #{null2,jdbcType=VARCHAR},
+      </if>
+      <if test="null3 != null" >
+        null3 = #{null3,jdbcType=VARCHAR},
+      </if>
+      <if test="null4 != null" >
+        null4 = #{null4,jdbcType=VARCHAR},
+      </if>
+      <if test="null5 != null" >
+        null5 = #{null5,jdbcType=VARCHAR},
+      </if>
+      <if test="null6 != null" >
+        null6 = #{null6,jdbcType=VARCHAR},
+      </if>
+      <if test="null7 != null" >
+        null7 = #{null7,jdbcType=VARCHAR},
+      </if>
+      <if test="comAppId != null" >
+        com_app_id = #{comAppId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where USER_ID = #{userId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.highwebsite.pojo.TCandIn1" >
+    update T_CAND_IN_1
+    set name = #{name,jdbcType=VARCHAR},
+      position_applied = #{positionApplied,jdbcType=VARCHAR},
+      resume_name = #{resumeName,jdbcType=VARCHAR},
+      previous_company_1 = #{previousCompany1,jdbcType=VARCHAR},
+      school_1 = #{school1,jdbcType=VARCHAR},
+      specialty_1 = #{specialty1,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      work_experience_date = #{workExperienceDate,jdbcType=DOUBLE},
+      expected_salary = #{expectedSalary,jdbcType=CHAR},
+      delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      position_type = #{positionType,jdbcType=CHAR},
+      previous_company_2 = #{previousCompany2,jdbcType=VARCHAR},
+      hiredate_2 = #{hiredate2,jdbcType=TIMESTAMP},
+      departure_2 = #{departure2,jdbcType=TIMESTAMP},
+      hiredate_1 = #{hiredate1,jdbcType=TIMESTAMP},
+      departure_1 = #{departure1,jdbcType=TIMESTAMP},
+      previous_position_1 = #{previousPosition1,jdbcType=VARCHAR},
+      previous_position_2 = #{previousPosition2,jdbcType=VARCHAR},
+      graduation_date_1 = #{graduationDate1,jdbcType=TIMESTAMP},
+      school_2 = #{school2,jdbcType=VARCHAR},
+      specialty_2 = #{specialty2,jdbcType=VARCHAR},
+      graduation_date_2 = #{graduationDate2,jdbcType=TIMESTAMP},
+      self-description = #{selfDescription,jdbcType=VARCHAR},
+      supplement = #{supplement,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      data_date = #{dataDate,jdbcType=TIMESTAMP},
+      null1 = #{null1,jdbcType=VARCHAR},
+      null2 = #{null2,jdbcType=VARCHAR},
+      null3 = #{null3,jdbcType=VARCHAR},
+      null4 = #{null4,jdbcType=VARCHAR},
+      null5 = #{null5,jdbcType=VARCHAR},
+      null6 = #{null6,jdbcType=VARCHAR},
+      null7 = #{null7,jdbcType=VARCHAR},
+      com_app_id = #{comAppId,jdbcType=VARCHAR}
+    where USER_ID = #{userId,jdbcType=CHAR}
+  </update>
+</mapper>

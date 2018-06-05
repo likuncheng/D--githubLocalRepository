@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.highwebsite.mapper1.LoginedUserMapper" >
+	
+	<insert id="insertOne" parameterType="com.highwebsite.pojo.LoginedUser">
+		insert into LoginedUser(phone,regist_passwd) values(#{phone},#{regist_passwd})
+	</insert>
+	
+	<delete id="deleteByPhone" parameterType="java.lang.String">
+		delete from LoginedUser where phone=#{value}
+	</delete>
+	
+	<select id="selectByPhone" parameterType="java.lang.String" resultType="com.highwebsite.pojo.LoginedUser">
+		select * from LoginedUser where phone=#{value}
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

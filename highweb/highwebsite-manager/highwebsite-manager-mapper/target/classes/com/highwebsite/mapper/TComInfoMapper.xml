@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.highwebsite.mapper.TComInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.highwebsite.pojo.TComInfo" >
+    <id column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="company_type" property="companyType" jdbcType="CHAR" />
+    <result column="industry_categroy" property="industryCategroy" jdbcType="VARCHAR" />
+    <result column="company_scale" property="companyScale" jdbcType="CHAR" />
+    <result column="company_representative_name" property="companyRepresentativeName" jdbcType="VARCHAR" />
+    <result column="contact_position" property="contactPosition" jdbcType="VARCHAR" />
+    <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="logo" property="logo" jdbcType="VARCHAR" />
+    <result column="company_profile" property="companyProfile" jdbcType="VARCHAR" />
+    <result column="provence" property="provence" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="region" property="region" jdbcType="VARCHAR" />
+    <result column="street" property="street" jdbcType="VARCHAR" />
+    <result column="certification" property="certification" jdbcType="CHAR" />
+    <result column="vip" property="vip" jdbcType="CHAR" />
+    <result column="md5_1" property="md51" jdbcType="CHAR" />
+    <result column="md5_2" property="md52" jdbcType="CHAR" />
+    <result column="register_id" property="registerId" jdbcType="VARCHAR" />
+    <result column="job_count" property="jobCount" jdbcType="VARCHAR" />
+    <result column="activity_degree" property="activityDegree" jdbcType="VARCHAR" />
+    <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="data_date" property="dataDate" jdbcType="TIMESTAMP" />
+    <result column="null1" property="null1" jdbcType="VARCHAR" />
+    <result column="null2" property="null2" jdbcType="VARCHAR" />
+    <result column="null3" property="null3" jdbcType="VARCHAR" />
+    <result column="null4" property="null4" jdbcType="VARCHAR" />
+    <result column="null5" property="null5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    company_id, company_name, company_type, industry_categroy, company_scale, company_representative_name, 
+    contact_position, contact_phone, logo, company_profile, provence, city, region, street, 
+    certification, vip, md5_1, md5_2, register_id, job_count, activity_degree, start_date, 
+    end_date, data_date, null1, null2, null3, null4, null5
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.highwebsite.pojo.TComInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from T_COM_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_COM_INFO
+    where company_id = #{companyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_COM_INFO
+    where company_id = #{companyId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.highwebsite.pojo.TComInfoExample" >
+    delete from T_COM_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.highwebsite.pojo.TComInfo" >
+    insert into T_COM_INFO (company_id, company_name, company_type, 
+      industry_categroy, company_scale, company_representative_name, 
+      contact_position, contact_phone, logo, 
+      company_profile, provence, city, 
+      region, street, certification, 
+      vip, md5_1, md5_2, register_id, 
+      job_count, activity_degree, start_date, 
+      end_date, data_date, null1, 
+      null2, null3, null4, 
+      null5)
+    values (#{companyId,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, #{companyType,jdbcType=CHAR}, 
+      #{industryCategroy,jdbcType=VARCHAR}, #{companyScale,jdbcType=CHAR}, #{companyRepresentativeName,jdbcType=VARCHAR}, 
+      #{contactPosition,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, 
+      #{companyProfile,jdbcType=VARCHAR}, #{provence,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{region,jdbcType=VARCHAR}, #{street,jdbcType=VARCHAR}, #{certification,jdbcType=CHAR}, 
+      #{vip,jdbcType=CHAR}, #{md51,jdbcType=CHAR}, #{md52,jdbcType=CHAR}, #{registerId,jdbcType=VARCHAR}, 
+      #{jobCount,jdbcType=VARCHAR}, #{activityDegree,jdbcType=VARCHAR}, #{startDate,jdbcType=TIMESTAMP}, 
+      #{endDate,jdbcType=TIMESTAMP}, #{dataDate,jdbcType=TIMESTAMP}, #{null1,jdbcType=VARCHAR}, 
+      #{null2,jdbcType=VARCHAR}, #{null3,jdbcType=VARCHAR}, #{null4,jdbcType=VARCHAR}, 
+      #{null5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.highwebsite.pojo.TComInfo" >
+    insert into T_COM_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="companyType != null" >
+        company_type,
+      </if>
+      <if test="industryCategroy != null" >
+        industry_categroy,
+      </if>
+      <if test="companyScale != null" >
+        company_scale,
+      </if>
+      <if test="companyRepresentativeName != null" >
+        company_representative_name,
+      </if>
+      <if test="contactPosition != null" >
+        contact_position,
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone,
+      </if>
+      <if test="logo != null" >
+        logo,
+      </if>
+      <if test="companyProfile != null" >
+        company_profile,
+      </if>
+      <if test="provence != null" >
+        provence,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="region != null" >
+        region,
+      </if>
+      <if test="street != null" >
+        street,
+      </if>
+      <if test="certification != null" >
+        certification,
+      </if>
+      <if test="vip != null" >
+        vip,
+      </if>
+      <if test="md51 != null" >
+        md5_1,
+      </if>
+      <if test="md52 != null" >
+        md5_2,
+      </if>
+      <if test="registerId != null" >
+        register_id,
+      </if>
+      <if test="jobCount != null" >
+        job_count,
+      </if>
+      <if test="activityDegree != null" >
+        activity_degree,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="dataDate != null" >
+        data_date,
+      </if>
+      <if test="null1 != null" >
+        null1,
+      </if>
+      <if test="null2 != null" >
+        null2,
+      </if>
+      <if test="null3 != null" >
+        null3,
+      </if>
+      <if test="null4 != null" >
+        null4,
+      </if>
+      <if test="null5 != null" >
+        null5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyType != null" >
+        #{companyType,jdbcType=CHAR},
+      </if>
+      <if test="industryCategroy != null" >
+        #{industryCategroy,jdbcType=VARCHAR},
+      </if>
+      <if test="companyScale != null" >
+        #{companyScale,jdbcType=CHAR},
+      </if>
+      <if test="companyRepresentativeName != null" >
+        #{companyRepresentativeName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPosition != null" >
+        #{contactPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="companyProfile != null" >
+        #{companyProfile,jdbcType=VARCHAR},
+      </if>
+      <if test="provence != null" >
+        #{provence,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null" >
+        #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="street != null" >
+        #{street,jdbcType=VARCHAR},
+      </if>
+      <if test="certification != null" >
+        #{certification,jdbcType=CHAR},
+      </if>
+      <if test="vip != null" >
+        #{vip,jdbcType=CHAR},
+      </if>
+      <if test="md51 != null" >
+        #{md51,jdbcType=CHAR},
+      </if>
+      <if test="md52 != null" >
+        #{md52,jdbcType=CHAR},
+      </if>
+      <if test="registerId != null" >
+        #{registerId,jdbcType=VARCHAR},
+      </if>
+      <if test="jobCount != null" >
+        #{jobCount,jdbcType=VARCHAR},
+      </if>
+      <if test="activityDegree != null" >
+        #{activityDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataDate != null" >
+        #{dataDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="null1 != null" >
+        #{null1,jdbcType=VARCHAR},
+      </if>
+      <if test="null2 != null" >
+        #{null2,jdbcType=VARCHAR},
+      </if>
+      <if test="null3 != null" >
+        #{null3,jdbcType=VARCHAR},
+      </if>
+      <if test="null4 != null" >
+        #{null4,jdbcType=VARCHAR},
+      </if>
+      <if test="null5 != null" >
+        #{null5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.highwebsite.pojo.TComInfoExample" resultType="java.lang.Integer" >
+    select count(*) from T_COM_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update T_COM_INFO
+    <set >
+      <if test="record.companyId != null" >
+        company_id = #{record.companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyName != null" >
+        company_name = #{record.companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyType != null" >
+        company_type = #{record.companyType,jdbcType=CHAR},
+      </if>
+      <if test="record.industryCategroy != null" >
+        industry_categroy = #{record.industryCategroy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyScale != null" >
+        company_scale = #{record.companyScale,jdbcType=CHAR},
+      </if>
+      <if test="record.companyRepresentativeName != null" >
+        company_representative_name = #{record.companyRepresentativeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactPosition != null" >
+        contact_position = #{record.contactPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactPhone != null" >
+        contact_phone = #{record.contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logo != null" >
+        logo = #{record.logo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyProfile != null" >
+        company_profile = #{record.companyProfile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provence != null" >
+        provence = #{record.provence,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.region != null" >
+        region = #{record.region,jdbcType=VARCHAR},
+      </if>
+      <if test="record.street != null" >
+        street = #{record.street,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certification != null" >
+        certification = #{record.certification,jdbcType=CHAR},
+      </if>
+      <if test="record.vip != null" >
+        vip = #{record.vip,jdbcType=CHAR},
+      </if>
+      <if test="record.md51 != null" >
+        md5_1 = #{record.md51,jdbcType=CHAR},
+      </if>
+      <if test="record.md52 != null" >
+        md5_2 = #{record.md52,jdbcType=CHAR},
+      </if>
+      <if test="record.registerId != null" >
+        register_id = #{record.registerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobCount != null" >
+        job_count = #{record.jobCount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityDegree != null" >
+        activity_degree = #{record.activityDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startDate != null" >
+        start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endDate != null" >
+        end_date = #{record.endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dataDate != null" >
+        data_date = #{record.dataDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.null1 != null" >
+        null1 = #{record.null1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null2 != null" >
+        null2 = #{record.null2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null3 != null" >
+        null3 = #{record.null3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null4 != null" >
+        null4 = #{record.null4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null5 != null" >
+        null5 = #{record.null5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update T_COM_INFO
+    set company_id = #{record.companyId,jdbcType=VARCHAR},
+      company_name = #{record.companyName,jdbcType=VARCHAR},
+      company_type = #{record.companyType,jdbcType=CHAR},
+      industry_categroy = #{record.industryCategroy,jdbcType=VARCHAR},
+      company_scale = #{record.companyScale,jdbcType=CHAR},
+      company_representative_name = #{record.companyRepresentativeName,jdbcType=VARCHAR},
+      contact_position = #{record.contactPosition,jdbcType=VARCHAR},
+      contact_phone = #{record.contactPhone,jdbcType=VARCHAR},
+      logo = #{record.logo,jdbcType=VARCHAR},
+      company_profile = #{record.companyProfile,jdbcType=VARCHAR},
+      provence = #{record.provence,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      region = #{record.region,jdbcType=VARCHAR},
+      street = #{record.street,jdbcType=VARCHAR},
+      certification = #{record.certification,jdbcType=CHAR},
+      vip = #{record.vip,jdbcType=CHAR},
+      md5_1 = #{record.md51,jdbcType=CHAR},
+      md5_2 = #{record.md52,jdbcType=CHAR},
+      register_id = #{record.registerId,jdbcType=VARCHAR},
+      job_count = #{record.jobCount,jdbcType=VARCHAR},
+      activity_degree = #{record.activityDegree,jdbcType=VARCHAR},
+      start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      end_date = #{record.endDate,jdbcType=TIMESTAMP},
+      data_date = #{record.dataDate,jdbcType=TIMESTAMP},
+      null1 = #{record.null1,jdbcType=VARCHAR},
+      null2 = #{record.null2,jdbcType=VARCHAR},
+      null3 = #{record.null3,jdbcType=VARCHAR},
+      null4 = #{record.null4,jdbcType=VARCHAR},
+      null5 = #{record.null5,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.highwebsite.pojo.TComInfo" >
+    update T_COM_INFO
+    <set >
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyType != null" >
+        company_type = #{companyType,jdbcType=CHAR},
+      </if>
+      <if test="industryCategroy != null" >
+        industry_categroy = #{industryCategroy,jdbcType=VARCHAR},
+      </if>
+      <if test="companyScale != null" >
+        company_scale = #{companyScale,jdbcType=CHAR},
+      </if>
+      <if test="companyRepresentativeName != null" >
+        company_representative_name = #{companyRepresentativeName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPosition != null" >
+        contact_position = #{contactPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="companyProfile != null" >
+        company_profile = #{companyProfile,jdbcType=VARCHAR},
+      </if>
+      <if test="provence != null" >
+        provence = #{provence,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null" >
+        region = #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="street != null" >
+        street = #{street,jdbcType=VARCHAR},
+      </if>
+      <if test="certification != null" >
+        certification = #{certification,jdbcType=CHAR},
+      </if>
+      <if test="vip != null" >
+        vip = #{vip,jdbcType=CHAR},
+      </if>
+      <if test="md51 != null" >
+        md5_1 = #{md51,jdbcType=CHAR},
+      </if>
+      <if test="md52 != null" >
+        md5_2 = #{md52,jdbcType=CHAR},
+      </if>
+      <if test="registerId != null" >
+        register_id = #{registerId,jdbcType=VARCHAR},
+      </if>
+      <if test="jobCount != null" >
+        job_count = #{jobCount,jdbcType=VARCHAR},
+      </if>
+      <if test="activityDegree != null" >
+        activity_degree = #{activityDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataDate != null" >
+        data_date = #{dataDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="null1 != null" >
+        null1 = #{null1,jdbcType=VARCHAR},
+      </if>
+      <if test="null2 != null" >
+        null2 = #{null2,jdbcType=VARCHAR},
+      </if>
+      <if test="null3 != null" >
+        null3 = #{null3,jdbcType=VARCHAR},
+      </if>
+      <if test="null4 != null" >
+        null4 = #{null4,jdbcType=VARCHAR},
+      </if>
+      <if test="null5 != null" >
+        null5 = #{null5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.highwebsite.pojo.TComInfo" >
+    update T_COM_INFO
+    set company_name = #{companyName,jdbcType=VARCHAR},
+      company_type = #{companyType,jdbcType=CHAR},
+      industry_categroy = #{industryCategroy,jdbcType=VARCHAR},
+      company_scale = #{companyScale,jdbcType=CHAR},
+      company_representative_name = #{companyRepresentativeName,jdbcType=VARCHAR},
+      contact_position = #{contactPosition,jdbcType=VARCHAR},
+      contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      logo = #{logo,jdbcType=VARCHAR},
+      company_profile = #{companyProfile,jdbcType=VARCHAR},
+      provence = #{provence,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      region = #{region,jdbcType=VARCHAR},
+      street = #{street,jdbcType=VARCHAR},
+      certification = #{certification,jdbcType=CHAR},
+      vip = #{vip,jdbcType=CHAR},
+      md5_1 = #{md51,jdbcType=CHAR},
+      md5_2 = #{md52,jdbcType=CHAR},
+      register_id = #{registerId,jdbcType=VARCHAR},
+      job_count = #{jobCount,jdbcType=VARCHAR},
+      activity_degree = #{activityDegree,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      data_date = #{dataDate,jdbcType=TIMESTAMP},
+      null1 = #{null1,jdbcType=VARCHAR},
+      null2 = #{null2,jdbcType=VARCHAR},
+      null3 = #{null3,jdbcType=VARCHAR},
+      null4 = #{null4,jdbcType=VARCHAR},
+      null5 = #{null5,jdbcType=VARCHAR}
+    where company_id = #{companyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

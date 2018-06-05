@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.highwebsite.mapper.TIntEvaMapper" >
+  <resultMap id="BaseResultMap" type="com.highwebsite.pojo.TIntEva" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="application" property="application" jdbcType="VARCHAR" />
+    <result column="interview_job" property="interviewJob" jdbcType="VARCHAR" />
+    <result column="dot" property="dot" jdbcType="INTEGER" />
+    <result column="overall" property="overall" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+    <result column="interview_process" property="interviewProcess" jdbcType="VARCHAR" />
+    <result column="other" property="other" jdbcType="VARCHAR" />
+    <result column="overall_score" property="overallScore" jdbcType="INTEGER" />
+    <result column="description_score" property="descriptionScore" jdbcType="INTEGER" />
+    <result column="interviewer_score" property="interviewerScore" jdbcType="INTEGER" />
+    <result column="environment_score" property="environmentScore" jdbcType="INTEGER" />
+    <result column="p_overall_score" property="pOverallScore" jdbcType="INTEGER" />
+    <result column="offline" property="offline" jdbcType="BIT" />
+    <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="data_date" property="dataDate" jdbcType="TIMESTAMP" />
+    <result column="null1" property="null1" jdbcType="VARCHAR" />
+    <result column="null2" property="null2" jdbcType="VARCHAR" />
+    <result column="null3" property="null3" jdbcType="VARCHAR" />
+    <result column="null4" property="null4" jdbcType="VARCHAR" />
+    <result column="null5" property="null5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, company_id, company_name, application, interview_job, dot, overall, date, interview_process, 
+    other, overall_score, description_score, interviewer_score, environment_score, p_overall_score, 
+    offline, start_date, end_date, data_date, null1, null2, null3, null4, null5
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.highwebsite.pojo.TIntEvaExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from T_INT_EVA
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_INT_EVA
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T_INT_EVA
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.highwebsite.pojo.TIntEvaExample" >
+    delete from T_INT_EVA
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.highwebsite.pojo.TIntEva" >
+    insert into T_INT_EVA (id, company_id, company_name, 
+      application, interview_job, dot, 
+      overall, date, interview_process, 
+      other, overall_score, description_score, 
+      interviewer_score, environment_score, p_overall_score, 
+      offline, start_date, end_date, 
+      data_date, null1, null2, 
+      null3, null4, null5
+      )
+    values (#{id,jdbcType=INTEGER}, #{companyId,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, 
+      #{application,jdbcType=VARCHAR}, #{interviewJob,jdbcType=VARCHAR}, #{dot,jdbcType=INTEGER}, 
+      #{overall,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, #{interviewProcess,jdbcType=VARCHAR}, 
+      #{other,jdbcType=VARCHAR}, #{overallScore,jdbcType=INTEGER}, #{descriptionScore,jdbcType=INTEGER}, 
+      #{interviewerScore,jdbcType=INTEGER}, #{environmentScore,jdbcType=INTEGER}, #{pOverallScore,jdbcType=INTEGER}, 
+      #{offline,jdbcType=BIT}, #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, 
+      #{dataDate,jdbcType=TIMESTAMP}, #{null1,jdbcType=VARCHAR}, #{null2,jdbcType=VARCHAR}, 
+      #{null3,jdbcType=VARCHAR}, #{null4,jdbcType=VARCHAR}, #{null5,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.highwebsite.pojo.TIntEva" >
+    insert into T_INT_EVA
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="application != null" >
+        application,
+      </if>
+      <if test="interviewJob != null" >
+        interview_job,
+      </if>
+      <if test="dot != null" >
+        dot,
+      </if>
+      <if test="overall != null" >
+        overall,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="interviewProcess != null" >
+        interview_process,
+      </if>
+      <if test="other != null" >
+        other,
+      </if>
+      <if test="overallScore != null" >
+        overall_score,
+      </if>
+      <if test="descriptionScore != null" >
+        description_score,
+      </if>
+      <if test="interviewerScore != null" >
+        interviewer_score,
+      </if>
+      <if test="environmentScore != null" >
+        environment_score,
+      </if>
+      <if test="pOverallScore != null" >
+        p_overall_score,
+      </if>
+      <if test="offline != null" >
+        offline,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="dataDate != null" >
+        data_date,
+      </if>
+      <if test="null1 != null" >
+        null1,
+      </if>
+      <if test="null2 != null" >
+        null2,
+      </if>
+      <if test="null3 != null" >
+        null3,
+      </if>
+      <if test="null4 != null" >
+        null4,
+      </if>
+      <if test="null5 != null" >
+        null5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="application != null" >
+        #{application,jdbcType=VARCHAR},
+      </if>
+      <if test="interviewJob != null" >
+        #{interviewJob,jdbcType=VARCHAR},
+      </if>
+      <if test="dot != null" >
+        #{dot,jdbcType=INTEGER},
+      </if>
+      <if test="overall != null" >
+        #{overall,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="interviewProcess != null" >
+        #{interviewProcess,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null" >
+        #{other,jdbcType=VARCHAR},
+      </if>
+      <if test="overallScore != null" >
+        #{overallScore,jdbcType=INTEGER},
+      </if>
+      <if test="descriptionScore != null" >
+        #{descriptionScore,jdbcType=INTEGER},
+      </if>
+      <if test="interviewerScore != null" >
+        #{interviewerScore,jdbcType=INTEGER},
+      </if>
+      <if test="environmentScore != null" >
+        #{environmentScore,jdbcType=INTEGER},
+      </if>
+      <if test="pOverallScore != null" >
+        #{pOverallScore,jdbcType=INTEGER},
+      </if>
+      <if test="offline != null" >
+        #{offline,jdbcType=BIT},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataDate != null" >
+        #{dataDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="null1 != null" >
+        #{null1,jdbcType=VARCHAR},
+      </if>
+      <if test="null2 != null" >
+        #{null2,jdbcType=VARCHAR},
+      </if>
+      <if test="null3 != null" >
+        #{null3,jdbcType=VARCHAR},
+      </if>
+      <if test="null4 != null" >
+        #{null4,jdbcType=VARCHAR},
+      </if>
+      <if test="null5 != null" >
+        #{null5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.highwebsite.pojo.TIntEvaExample" resultType="java.lang.Integer" >
+    select count(*) from T_INT_EVA
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update T_INT_EVA
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyId != null" >
+        company_id = #{record.companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyName != null" >
+        company_name = #{record.companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.application != null" >
+        application = #{record.application,jdbcType=VARCHAR},
+      </if>
+      <if test="record.interviewJob != null" >
+        interview_job = #{record.interviewJob,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dot != null" >
+        dot = #{record.dot,jdbcType=INTEGER},
+      </if>
+      <if test="record.overall != null" >
+        overall = #{record.overall,jdbcType=VARCHAR},
+      </if>
+      <if test="record.date != null" >
+        date = #{record.date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.interviewProcess != null" >
+        interview_process = #{record.interviewProcess,jdbcType=VARCHAR},
+      </if>
+      <if test="record.other != null" >
+        other = #{record.other,jdbcType=VARCHAR},
+      </if>
+      <if test="record.overallScore != null" >
+        overall_score = #{record.overallScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.descriptionScore != null" >
+        description_score = #{record.descriptionScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.interviewerScore != null" >
+        interviewer_score = #{record.interviewerScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.environmentScore != null" >
+        environment_score = #{record.environmentScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.pOverallScore != null" >
+        p_overall_score = #{record.pOverallScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.offline != null" >
+        offline = #{record.offline,jdbcType=BIT},
+      </if>
+      <if test="record.startDate != null" >
+        start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endDate != null" >
+        end_date = #{record.endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dataDate != null" >
+        data_date = #{record.dataDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.null1 != null" >
+        null1 = #{record.null1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null2 != null" >
+        null2 = #{record.null2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null3 != null" >
+        null3 = #{record.null3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null4 != null" >
+        null4 = #{record.null4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null5 != null" >
+        null5 = #{record.null5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update T_INT_EVA
+    set id = #{record.id,jdbcType=INTEGER},
+      company_id = #{record.companyId,jdbcType=VARCHAR},
+      company_name = #{record.companyName,jdbcType=VARCHAR},
+      application = #{record.application,jdbcType=VARCHAR},
+      interview_job = #{record.interviewJob,jdbcType=VARCHAR},
+      dot = #{record.dot,jdbcType=INTEGER},
+      overall = #{record.overall,jdbcType=VARCHAR},
+      date = #{record.date,jdbcType=TIMESTAMP},
+      interview_process = #{record.interviewProcess,jdbcType=VARCHAR},
+      other = #{record.other,jdbcType=VARCHAR},
+      overall_score = #{record.overallScore,jdbcType=INTEGER},
+      description_score = #{record.descriptionScore,jdbcType=INTEGER},
+      interviewer_score = #{record.interviewerScore,jdbcType=INTEGER},
+      environment_score = #{record.environmentScore,jdbcType=INTEGER},
+      p_overall_score = #{record.pOverallScore,jdbcType=INTEGER},
+      offline = #{record.offline,jdbcType=BIT},
+      start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      end_date = #{record.endDate,jdbcType=TIMESTAMP},
+      data_date = #{record.dataDate,jdbcType=TIMESTAMP},
+      null1 = #{record.null1,jdbcType=VARCHAR},
+      null2 = #{record.null2,jdbcType=VARCHAR},
+      null3 = #{record.null3,jdbcType=VARCHAR},
+      null4 = #{record.null4,jdbcType=VARCHAR},
+      null5 = #{record.null5,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.highwebsite.pojo.TIntEva" >
+    update T_INT_EVA
+    <set >
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="application != null" >
+        application = #{application,jdbcType=VARCHAR},
+      </if>
+      <if test="interviewJob != null" >
+        interview_job = #{interviewJob,jdbcType=VARCHAR},
+      </if>
+      <if test="dot != null" >
+        dot = #{dot,jdbcType=INTEGER},
+      </if>
+      <if test="overall != null" >
+        overall = #{overall,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="interviewProcess != null" >
+        interview_process = #{interviewProcess,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null" >
+        other = #{other,jdbcType=VARCHAR},
+      </if>
+      <if test="overallScore != null" >
+        overall_score = #{overallScore,jdbcType=INTEGER},
+      </if>
+      <if test="descriptionScore != null" >
+        description_score = #{descriptionScore,jdbcType=INTEGER},
+      </if>
+      <if test="interviewerScore != null" >
+        interviewer_score = #{interviewerScore,jdbcType=INTEGER},
+      </if>
+      <if test="environmentScore != null" >
+        environment_score = #{environmentScore,jdbcType=INTEGER},
+      </if>
+      <if test="pOverallScore != null" >
+        p_overall_score = #{pOverallScore,jdbcType=INTEGER},
+      </if>
+      <if test="offline != null" >
+        offline = #{offline,jdbcType=BIT},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataDate != null" >
+        data_date = #{dataDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="null1 != null" >
+        null1 = #{null1,jdbcType=VARCHAR},
+      </if>
+      <if test="null2 != null" >
+        null2 = #{null2,jdbcType=VARCHAR},
+      </if>
+      <if test="null3 != null" >
+        null3 = #{null3,jdbcType=VARCHAR},
+      </if>
+      <if test="null4 != null" >
+        null4 = #{null4,jdbcType=VARCHAR},
+      </if>
+      <if test="null5 != null" >
+        null5 = #{null5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.highwebsite.pojo.TIntEva" >
+    update T_INT_EVA
+    set company_id = #{companyId,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      application = #{application,jdbcType=VARCHAR},
+      interview_job = #{interviewJob,jdbcType=VARCHAR},
+      dot = #{dot,jdbcType=INTEGER},
+      overall = #{overall,jdbcType=VARCHAR},
+      date = #{date,jdbcType=TIMESTAMP},
+      interview_process = #{interviewProcess,jdbcType=VARCHAR},
+      other = #{other,jdbcType=VARCHAR},
+      overall_score = #{overallScore,jdbcType=INTEGER},
+      description_score = #{descriptionScore,jdbcType=INTEGER},
+      interviewer_score = #{interviewerScore,jdbcType=INTEGER},
+      environment_score = #{environmentScore,jdbcType=INTEGER},
+      p_overall_score = #{pOverallScore,jdbcType=INTEGER},
+      offline = #{offline,jdbcType=BIT},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      data_date = #{dataDate,jdbcType=TIMESTAMP},
+      null1 = #{null1,jdbcType=VARCHAR},
+      null2 = #{null2,jdbcType=VARCHAR},
+      null3 = #{null3,jdbcType=VARCHAR},
+      null4 = #{null4,jdbcType=VARCHAR},
+      null5 = #{null5,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

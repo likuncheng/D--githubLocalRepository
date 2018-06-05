@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.highwebsite.mapper1.JobListMapper" >
+
+	<select id="findcompany_nameByStreet_job" parameterType="java.lang.String" resultType="java.lang.String">
+		select company_name from T_COM_INFO WHERE street LIKE '%${value}%'
+	</select>
+	
+	<select id="findJobsByAllCondition" parameterType="com.highwebsite.pojo.AllConditionForJobs" resultType="com.highwebsite.pojo.JobListBean">
+		SELECT 
+			T_JOB_PUB.job,
+			T_JOB_PUB.null1,
+			T_JOB_PUB.salary,
+			T_JOB_PUB.education_required,
+			T_JOB_PUB.experience_required,
+			T_JOB_PUB.job_required,
+			T_JOB_PUB.release_time,
+			T_COM_INFO.logo,
+			T_COM_INFO.company_name,
+			T_COM_INFO.company_type,
+			T_COM_INFO.industry_categroy,
+			T_COM_INFO.city,
+			T_COM_INFO.activity_degree
+		FROM 
+			T_JOB_PUB,
+			T_COM_INFO
+		<where>			
+			<if test="allConditionForJobs!=null">
+				and T_JOB_PUB.company_name=T_COM_INFO.company_name
+				<if test="allConditionForJobs.region!=null and allConditionForJobs.region!=''">
+					and T_COM_INFO.region=#{allConditionForJobs.region}
+				</if>
+				<if test="allConditionForJobs.categroys!=null and allConditionForJobs.categroys!=''">
+					<foreach collection="allConditionForJobs.categroys" item="value1" open="AND (" close=")" separator="or">
+						T_COM_INFO.industry_categroy like '%${value1}%'
+					</foreach>
+				</if>
+				<if test="allConditionForJobs.salarysmall!=null and allConditionForJobs.salarysmall!='' and allConditionForJobs.salarybig!=null and allConditionForJobs.salarybig!=''">
+					and T_JOB_PUB.salary BETWEEN #{allConditionForJobs.salarysmall} AND #{allConditionForJobs.salarybig}
+				</if>
+				<if test="allConditionForJobs.experience_requiredsmall!=null">
+					and T_JOB_PUB.experience_required = #{allConditionForJobs.experience_requiredsmall}
+				</if>
+				<if test="allConditionForJobs.company_type!=null and allConditionForJobs.company_type!=''">
+					and T_COM_INFO.company_type=#{allConditionForJobs.company_type}
+				</if>
+				<if test="allConditionForJobs.education_required!=null and allConditionForJobs.education_required!=''">
+					and T_JOB_PUB.education_required=#{allConditionForJobs.education_required}
+				</if>
+				<if test="allConditionForJobs.release_timesmall!=null and allConditionForJobs.release_timesmall!='' and allConditionForJobs.release_timebig!=null and allConditionForJobs.release_timebig!=''">
+					and T_JOB_PUB.release_time&lt;=#{allConditionForJobs.release_timebig} and T_JOB_PUB.release_time&gt;=#{allConditionForJobs.release_timesmall}
+				</if>
+			</if>
+		</where>
+	</select>
+
+</mapper>

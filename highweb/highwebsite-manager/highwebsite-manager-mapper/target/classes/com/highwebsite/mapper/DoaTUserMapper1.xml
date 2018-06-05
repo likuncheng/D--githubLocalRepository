@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.highwebsite.mapper.DoaTUserMapper1" >
+
+	<resultMap type="com.highwebsite.pojo.DoaTUser1" id="DoaTUserResultMap">
+		<id column="user_id" property="userId"/>
+		<result column="regist_id" property="registId"></result>
+		<result column="regist_passwd" property="registPasswd"></result>		
+		<result column="name" property="name"></result>
+		<result column="birth" property="birth"></result>
+		<result column="gender" property="gender"></result>
+		<result column="phone" property="phone"></result>
+		<result column="address" property="address"></result>
+		<result column="email" property="email"></result>
+		<result column="PSAPK" property="psapk"></result>
+		<result column="register_drc_date" property="registerDrcDate"></result>
+		<result column="post" property="post"></result>
+		<result column="politic" property="politic"></result>
+		<result column="null3" property="null3"></result>
+		<result column="null4" property="null4"></result>
+		<result column="null5" property="null5"></result>
+		<result column="null6" property="null6"></result>
+		<result column="null7" property="null7"></result>
+		
+		
+	</resultMap>
+  
+  <select id="findDoaTUserByDoaTUser" parameterType="com.highwebsite.pojo.DoaTUser1" resultType="com.highwebsite.pojo.DoaTUser1">
+		select * from DOA_T_USER where phone=#{phone} and regist_passwd=#{regist_passwd}
+  </select>
+  
+</mapper>

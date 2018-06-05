@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context-4.0.xsd
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+    http://www.springframework.org/schema/mvc 
+    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-4.0.xsd"> 
+
+<!-- spring容器加载配置 -->
+<!-- 对于注解的Handler可以单个配置 
+	实际开发中建议使用组件扫描
+<bean class="cn.itcast.ssm.controller.ItemsController3"/>
+	-->
+<context:component-scan base-package="com.highwebsite.controller"/>
+
+<!-- 静态资源解析
+	包括：js,css,img.. -->
+	<mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>
+	<mvc:resources location="/WEB-INF/js/" mapping="/js/**"/> 
+	<mvc:resources location="/WEB-INF/images/" mapping="/images/**"/> 
+	<mvc:resources location="/WEB-INF/fonts/" mapping="/fonts/**"/> 
+	<mvc:resources location="/WEB-INF/img/" mapping="/img/**"/> 
+
+<!-- <mvc:annotation-driven conversion-service="conversionService" validator="validator"></mvc:annotation-driven> -->
+<mvc:annotation-driven/>
+<!-- 视图解析器
+	解析jsp解析，默认使用jstl标签，classpath下得有jstl的包-->
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+<!-- 配置jsp路径的前缀和后缀 -->
+	<property name="prefix" value="/WEB-INF/pages/"/>
+	<property name="suffix" value=".jsp"/>
+</bean>
+
+<!-- 自定义参数绑定 -->
+ <!--  <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+	转换器
+	<property name="converters">
+		<list>
+			日期转换器
+			<bean class="com.highwebsite.controller.converter.DataConverter"/>
+		</list>
+	</property>
+</bean>  -->
+
+
+<!-- 校验器 -->
+<!-- <bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		校验器
+		<property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
+		指定校验使用的资源文件，如果不指定则默认使用classpath下的ValidationMessages.properties
+		<property name="validationMessageSource" ref="messageSource" />
+</bean> -->
+<!-- 校验错误信息配置文件 -->
+<!-- <bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		资源文件名
+		<property name="basenames">   
+       	 <list>    
+            <value>classpath:CustomValidationMessages</value> 
+       	 </list>   
+    	</property>
+		资源文件编码格式
+		<property name="fileEncodings" value="utf-8" />
+		对资源文件内容缓存时间，单位秒
+		<property name="cacheSeconds" value="120" />
+</bean> -->
+
+<!-- 全局异常处理器
+	只要实现HandlerExceptionResolver接口就是全局异常处理器,只有一个，就算定义多个也没有用 
+ -->
+<!-- <bean class="cn.itcast.ssm.exception.CustomExceptionResolver"></bean> -->
+
+<!-- 文件上传 -->
+<!-- <bean id="multipartRe solver" 
+	class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	设置文件上传的最大尺寸为5MB
+	<property name="maxUploadSize">
+		<value>5242880</value>
+	</property>
+</bean> -->
+
+<!-- 拦截器 -->
+    <!-- <mvc:interceptors> 
+	 <mvc:interceptor>
+		<mvc:mapping path="/**"/>
+		<bean class="com.highwebsite.intercepter.LoginInterceptor"></bean>
+	</mvc:interceptor> 
+</mvc:interceptors>   -->
+
+</beans>

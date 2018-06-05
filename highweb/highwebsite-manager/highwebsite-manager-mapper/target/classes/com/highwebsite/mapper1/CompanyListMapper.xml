@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.highwebsite.mapper1.CompanyListMapper" >
+
+	<select id="findcompany_nameByStreet" parameterType="java.lang.String" resultType="java.lang.String">
+		select company_name from T_COM_INFO WHERE street LIKE '%${value}%'
+	</select>
+	
+	<select id="findCompanysByRegion" parameterType="java.lang.String" resultType="com.highwebsite.pojo.T_Com_Info">
+		select * from T_COM_INFO WHERE region=#{value};
+	</select>
+	
+	<sql id="Industry_categroy_where">
+		<if test="industry_categroyclass!=null">
+			<if test="industry_categroyclass.categroys!=null">
+				<foreach collection="industry_categroyclass.categroys" item="value1" open="AND (" close=")" separator="or">
+					industry_categroy like '%${value1}%'
+				</foreach>
+			</if>
+		</if>
+	</sql>	
+	<select id="findCompanysByIndustry_categroy" parameterType="com.highwebsite.pojo.Industry_categroyclass" resultType="com.highwebsite.pojo.T_Com_Info">
+		select * from T_COM_INFO
+		<where>
+			<include refid="Industry_categroy_where"></include>
+		</where>
+	</select>
+	
+	<select id="findCompanysByScale" parameterType="java.lang.String" resultType="com.highwebsite.pojo.T_Com_Info">
+		SELECT * from T_COM_INFO where company_scale=#{value}
+	</select>
+	
+	<select id="findCompanysByType" parameterType="java.lang.String" resultType="com.highwebsite.pojo.T_Com_Info">
+		SELECT * from T_COM_INFO where company_type=#{value}
+	</select>
+	
+	<select id="findCompanysByAllCondition" parameterType="com.highwebsite.pojo.AllConditionForCompanys" resultType="com.highwebsite.pojo.T_Com_Info">
+		select * from T_COM_INFO
+		<where>
+			<if test="allConditionForCompanys!=null">
+				<if test="allConditionForCompanys.street!=null and allConditionForCompanys.street!=''">
+					and street like '%${allConditionForCompanys.street}%'
+				</if>
+				<if test="allConditionForCompanys.region!=null and allConditionForCompanys.region!=''">
+					and region=#{allConditionForCompanys.region}
+				</if>
+				<if test="allConditionForCompanys.company_scale!=null and allConditionForCompanys.company_scale!=''">
+					and company_scale=#{allConditionForCompanys.company_scale}
+				</if>
+				<if test="allConditionForCompanys.company_type!=null and allConditionForCompanys.company_type!=''">
+					and company_type=#{allConditionForCompanys.company_type}
+				</if>
+				<if test="allConditionForCompanys.categroys!=null and allConditionForCompanys.categroys!=''">
+					<foreach collection="allConditionForCompanys.categroys" item="value1" open="AND (" close=")" separator="or">
+						industry_categroy like '%${value1}%'
+					</foreach>
+				</if>
+			</if>
+		</where>
+	</select>
+
+</mapper>

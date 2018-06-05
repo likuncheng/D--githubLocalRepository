@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.highwebsite.mapper.DoaTDrcMapper" >
+  <resultMap id="BaseResultMap" type="com.highwebsite.pojo.DoaTDrc" >
+    <id column="md5" property="md5" jdbcType="CHAR" />
+    <result column="data_name" property="dataName" jdbcType="VARCHAR" />
+    <result column="data_security_level" property="dataSecurityLevel" jdbcType="CHAR" />
+    <result column="data_size" property="dataSize" jdbcType="INTEGER" />
+    <result column="data_format" property="dataFormat" jdbcType="VARCHAR" />
+    <result column="data_owner" property="dataOwner" jdbcType="VARCHAR" />
+    <result column="data_registeration_time" property="dataRegisterationTime" jdbcType="TIMESTAMP" />
+    <result column="data_source" property="dataSource" jdbcType="VARCHAR" />
+    <result column="data_storage" property="dataStorage" jdbcType="VARCHAR" />
+    <result column="data_record_address" property="dataRecordAddress" jdbcType="VARCHAR" />
+    <result column="theme" property="theme" jdbcType="VARCHAR" />
+    <result column="null1" property="null1" jdbcType="VARCHAR" />
+    <result column="null2" property="null2" jdbcType="VARCHAR" />
+    <result column="null3" property="null3" jdbcType="VARCHAR" />
+    <result column="null4" property="null4" jdbcType="VARCHAR" />
+    <result column="null5" property="null5" jdbcType="VARCHAR" />
+    <result column="null6" property="null6" jdbcType="VARCHAR" />
+    <result column="null7" property="null7" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    md5, data_name, data_security_level, data_size, data_format, data_owner, data_registeration_time, 
+    data_source, data_storage, data_record_address, theme, null1, null2, null3, null4, 
+    null5, null6, null7
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.highwebsite.pojo.DoaTDrcExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from DOA_T_DRC
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from DOA_T_DRC
+    where md5 = #{md5,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from DOA_T_DRC
+    where md5 = #{md5,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.highwebsite.pojo.DoaTDrcExample" >
+    delete from DOA_T_DRC
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.highwebsite.pojo.DoaTDrc" >
+    insert into DOA_T_DRC (md5, data_name, data_security_level, 
+      data_size, data_format, data_owner, 
+      data_registeration_time, data_source, data_storage, 
+      data_record_address, theme, null1, 
+      null2, null3, null4, 
+      null5, null6, null7
+      )
+    values (#{md5,jdbcType=CHAR}, #{dataName,jdbcType=VARCHAR}, #{dataSecurityLevel,jdbcType=CHAR}, 
+      #{dataSize,jdbcType=INTEGER}, #{dataFormat,jdbcType=VARCHAR}, #{dataOwner,jdbcType=VARCHAR}, 
+      #{dataRegisterationTime,jdbcType=TIMESTAMP}, #{dataSource,jdbcType=VARCHAR}, #{dataStorage,jdbcType=VARCHAR}, 
+      #{dataRecordAddress,jdbcType=VARCHAR}, #{theme,jdbcType=VARCHAR}, #{null1,jdbcType=VARCHAR}, 
+      #{null2,jdbcType=VARCHAR}, #{null3,jdbcType=VARCHAR}, #{null4,jdbcType=VARCHAR}, 
+      #{null5,jdbcType=VARCHAR}, #{null6,jdbcType=VARCHAR}, #{null7,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.highwebsite.pojo.DoaTDrc" >
+    insert into DOA_T_DRC
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="md5 != null" >
+        md5,
+      </if>
+      <if test="dataName != null" >
+        data_name,
+      </if>
+      <if test="dataSecurityLevel != null" >
+        data_security_level,
+      </if>
+      <if test="dataSize != null" >
+        data_size,
+      </if>
+      <if test="dataFormat != null" >
+        data_format,
+      </if>
+      <if test="dataOwner != null" >
+        data_owner,
+      </if>
+      <if test="dataRegisterationTime != null" >
+        data_registeration_time,
+      </if>
+      <if test="dataSource != null" >
+        data_source,
+      </if>
+      <if test="dataStorage != null" >
+        data_storage,
+      </if>
+      <if test="dataRecordAddress != null" >
+        data_record_address,
+      </if>
+      <if test="theme != null" >
+        theme,
+      </if>
+      <if test="null1 != null" >
+        null1,
+      </if>
+      <if test="null2 != null" >
+        null2,
+      </if>
+      <if test="null3 != null" >
+        null3,
+      </if>
+      <if test="null4 != null" >
+        null4,
+      </if>
+      <if test="null5 != null" >
+        null5,
+      </if>
+      <if test="null6 != null" >
+        null6,
+      </if>
+      <if test="null7 != null" >
+        null7,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="md5 != null" >
+        #{md5,jdbcType=CHAR},
+      </if>
+      <if test="dataName != null" >
+        #{dataName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataSecurityLevel != null" >
+        #{dataSecurityLevel,jdbcType=CHAR},
+      </if>
+      <if test="dataSize != null" >
+        #{dataSize,jdbcType=INTEGER},
+      </if>
+      <if test="dataFormat != null" >
+        #{dataFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="dataOwner != null" >
+        #{dataOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="dataRegisterationTime != null" >
+        #{dataRegisterationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataSource != null" >
+        #{dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="dataStorage != null" >
+        #{dataStorage,jdbcType=VARCHAR},
+      </if>
+      <if test="dataRecordAddress != null" >
+        #{dataRecordAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="theme != null" >
+        #{theme,jdbcType=VARCHAR},
+      </if>
+      <if test="null1 != null" >
+        #{null1,jdbcType=VARCHAR},
+      </if>
+      <if test="null2 != null" >
+        #{null2,jdbcType=VARCHAR},
+      </if>
+      <if test="null3 != null" >
+        #{null3,jdbcType=VARCHAR},
+      </if>
+      <if test="null4 != null" >
+        #{null4,jdbcType=VARCHAR},
+      </if>
+      <if test="null5 != null" >
+        #{null5,jdbcType=VARCHAR},
+      </if>
+      <if test="null6 != null" >
+        #{null6,jdbcType=VARCHAR},
+      </if>
+      <if test="null7 != null" >
+        #{null7,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.highwebsite.pojo.DoaTDrcExample" resultType="java.lang.Integer" >
+    select count(*) from DOA_T_DRC
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update DOA_T_DRC
+    <set >
+      <if test="record.md5 != null" >
+        md5 = #{record.md5,jdbcType=CHAR},
+      </if>
+      <if test="record.dataName != null" >
+        data_name = #{record.dataName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dataSecurityLevel != null" >
+        data_security_level = #{record.dataSecurityLevel,jdbcType=CHAR},
+      </if>
+      <if test="record.dataSize != null" >
+        data_size = #{record.dataSize,jdbcType=INTEGER},
+      </if>
+      <if test="record.dataFormat != null" >
+        data_format = #{record.dataFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dataOwner != null" >
+        data_owner = #{record.dataOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dataRegisterationTime != null" >
+        data_registeration_time = #{record.dataRegisterationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dataSource != null" >
+        data_source = #{record.dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dataStorage != null" >
+        data_storage = #{record.dataStorage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dataRecordAddress != null" >
+        data_record_address = #{record.dataRecordAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.theme != null" >
+        theme = #{record.theme,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null1 != null" >
+        null1 = #{record.null1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null2 != null" >
+        null2 = #{record.null2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null3 != null" >
+        null3 = #{record.null3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null4 != null" >
+        null4 = #{record.null4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null5 != null" >
+        null5 = #{record.null5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null6 != null" >
+        null6 = #{record.null6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null7 != null" >
+        null7 = #{record.null7,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update DOA_T_DRC
+    set md5 = #{record.md5,jdbcType=CHAR},
+      data_name = #{record.dataName,jdbcType=VARCHAR},
+      data_security_level = #{record.dataSecurityLevel,jdbcType=CHAR},
+      data_size = #{record.dataSize,jdbcType=INTEGER},
+      data_format = #{record.dataFormat,jdbcType=VARCHAR},
+      data_owner = #{record.dataOwner,jdbcType=VARCHAR},
+      data_registeration_time = #{record.dataRegisterationTime,jdbcType=TIMESTAMP},
+      data_source = #{record.dataSource,jdbcType=VARCHAR},
+      data_storage = #{record.dataStorage,jdbcType=VARCHAR},
+      data_record_address = #{record.dataRecordAddress,jdbcType=VARCHAR},
+      theme = #{record.theme,jdbcType=VARCHAR},
+      null1 = #{record.null1,jdbcType=VARCHAR},
+      null2 = #{record.null2,jdbcType=VARCHAR},
+      null3 = #{record.null3,jdbcType=VARCHAR},
+      null4 = #{record.null4,jdbcType=VARCHAR},
+      null5 = #{record.null5,jdbcType=VARCHAR},
+      null6 = #{record.null6,jdbcType=VARCHAR},
+      null7 = #{record.null7,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.highwebsite.pojo.DoaTDrc" >
+    update DOA_T_DRC
+    <set >
+      <if test="dataName != null" >
+        data_name = #{dataName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataSecurityLevel != null" >
+        data_security_level = #{dataSecurityLevel,jdbcType=CHAR},
+      </if>
+      <if test="dataSize != null" >
+        data_size = #{dataSize,jdbcType=INTEGER},
+      </if>
+      <if test="dataFormat != null" >
+        data_format = #{dataFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="dataOwner != null" >
+        data_owner = #{dataOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="dataRegisterationTime != null" >
+        data_registeration_time = #{dataRegisterationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataSource != null" >
+        data_source = #{dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="dataStorage != null" >
+        data_storage = #{dataStorage,jdbcType=VARCHAR},
+      </if>
+      <if test="dataRecordAddress != null" >
+        data_record_address = #{dataRecordAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="theme != null" >
+        theme = #{theme,jdbcType=VARCHAR},
+      </if>
+      <if test="null1 != null" >
+        null1 = #{null1,jdbcType=VARCHAR},
+      </if>
+      <if test="null2 != null" >
+        null2 = #{null2,jdbcType=VARCHAR},
+      </if>
+      <if test="null3 != null" >
+        null3 = #{null3,jdbcType=VARCHAR},
+      </if>
+      <if test="null4 != null" >
+        null4 = #{null4,jdbcType=VARCHAR},
+      </if>
+      <if test="null5 != null" >
+        null5 = #{null5,jdbcType=VARCHAR},
+      </if>
+      <if test="null6 != null" >
+        null6 = #{null6,jdbcType=VARCHAR},
+      </if>
+      <if test="null7 != null" >
+        null7 = #{null7,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where md5 = #{md5,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.highwebsite.pojo.DoaTDrc" >
+    update DOA_T_DRC
+    set data_name = #{dataName,jdbcType=VARCHAR},
+      data_security_level = #{dataSecurityLevel,jdbcType=CHAR},
+      data_size = #{dataSize,jdbcType=INTEGER},
+      data_format = #{dataFormat,jdbcType=VARCHAR},
+      data_owner = #{dataOwner,jdbcType=VARCHAR},
+      data_registeration_time = #{dataRegisterationTime,jdbcType=TIMESTAMP},
+      data_source = #{dataSource,jdbcType=VARCHAR},
+      data_storage = #{dataStorage,jdbcType=VARCHAR},
+      data_record_address = #{dataRecordAddress,jdbcType=VARCHAR},
+      theme = #{theme,jdbcType=VARCHAR},
+      null1 = #{null1,jdbcType=VARCHAR},
+      null2 = #{null2,jdbcType=VARCHAR},
+      null3 = #{null3,jdbcType=VARCHAR},
+      null4 = #{null4,jdbcType=VARCHAR},
+      null5 = #{null5,jdbcType=VARCHAR},
+      null6 = #{null6,jdbcType=VARCHAR},
+      null7 = #{null7,jdbcType=VARCHAR}
+    where md5 = #{md5,jdbcType=CHAR}
+  </update>
+</mapper>

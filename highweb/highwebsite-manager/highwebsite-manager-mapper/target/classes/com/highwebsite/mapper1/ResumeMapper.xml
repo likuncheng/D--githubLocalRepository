@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.highwebsite.mapper1.ResumeMapper">
+
+<select id="findUserInformationByPhone" parameterType="java.lang.String" resultType="com.highwebsite.pojo.T_CAND_IN_2">
+	SELECT
+		photo,
+		chinese_name,
+		gender,
+		birthday,
+		null1,
+		null2,
+		address,
+		phone,
+		email
+	FROM 
+		T_CAND_IN_2
+	WHERE 
+		phone =#{value}
+</select>
+
+<select id="findPresentCondition" parameterType="java.lang.String" resultType="java.lang.String">
+	select null3 from T_CAND_IN_2 WHERE phone=#{value}
+</select>
+
+<update id="updatePresentCondition" parameterType="java.lang.String">
+	UPDATE T_CAND_IN_2 SET NULL3=#{value}
+</update>
+
+<select id="findT_CAND_IN_1ByPhone" parameterType="java.lang.String" resultType="com.highwebsite.pojo.T_CAND_IN_1">
+	SELECT * from T_CAND_IN_1 where null4=#{value}
+</select>
+
+<update id="updateJobexperience1" parameterType="com.highwebsite.pojo.T_CAND_IN_1">
+	UPDATE 
+		T_CAND_IN_1 
+	SET 
+		previous_company_1=#{previous_company_1},
+		previous_position_1=#{previous_position_1},
+		hiredate_1=#{hiredate_1},
+		departure_1=#{departure_1},
+		null2=#{null2} 
+	where 
+		null4=#{null4}
+</update>
+
+<update id="updateJobexperience2" parameterType="com.highwebsite.pojo.T_CAND_IN_1">
+	UPDATE 
+		T_CAND_IN_1 
+	SET 
+		previous_company_2=#{previous_company_2},
+		previous_position_2=#{previous_position_2},
+		hiredate_2=#{hiredate_2},
+		departure_2=#{departure_2},
+		null3=#{null3} 
+	where 
+		null4=#{null4}
+</update>
+
+<select id="findCompanysIsNull" parameterType="java.lang.String" resultType="com.highwebsite.pojo.T_CAND_IN_1">
+	select previous_company_1,previous_company_2 from T_CAND_IN_1 where null4=#{value}
+</select>
+
+<select id="findT_CAND_IN_1ByPhoneandCompany1" parameterType="com.highwebsite.pojo.T_CAND_IN_1" resultType="com.highwebsite.pojo.T_CAND_IN_1">
+select * from T_CAND_IN_1 WHERE null4=#{null4} AND previous_company_1=#{previous_company_1}
+</select>
+
+<select id="findT_CAND_IN_1ByPhoneandCompany2" parameterType="com.highwebsite.pojo.T_CAND_IN_1" resultType="com.highwebsite.pojo.T_CAND_IN_1">
+select * from T_CAND_IN_1 WHERE null4=#{null4} AND previous_company_2=#{previous_company_2}
+</select>
+
+<select id="findSchoolsIsNull" parameterType="java.lang.String" resultType="com.highwebsite.pojo.T_CAND_IN_1">
+	select school_1,school_2  from T_CAND_IN_1 WHERE NULL4=#{value}
+</select>
+
+<update id="updateschool1" parameterType="com.highwebsite.pojo.T_CAND_IN_1">
+	update 
+		T_CAND_IN_1 
+	SET 
+		school_1=#{school_1},
+		specialty_1=#{specialty_1},
+		graduation_date_1=#{graduation_date_1},
+		null1=#{null1} 
+	where 
+		null4=#{null4}
+</update>
+
+<update id="updateschool2" parameterType="com.highwebsite.pojo.T_CAND_IN_1">
+	update 
+		T_CAND_IN_1 
+	SET 
+		school_2=#{school_2},
+		specialty_2=#{specialty_2},
+		graduation_date_2=#{graduation_date_2},
+		null6=#{null6} 
+	where 
+		null4=#{null4}
+</update>
+
+<select id="findT_CAND_IN_1ByPhoneandSchool1" parameterType="com.highwebsite.pojo.T_CAND_IN_1" resultType="com.highwebsite.pojo.T_CAND_IN_1">
+	select * from T_CAND_IN_1 WHERE null4=#{null4} AND school_1=#{school_1}
+</select>
+
+<select id="findT_CAND_IN_1ByPhoneandSchool2" parameterType="com.highwebsite.pojo.T_CAND_IN_1" resultType="com.highwebsite.pojo.T_CAND_IN_1">
+	select * from T_CAND_IN_1 WHERE null4=#{null4} AND school_2=#{school_2}
+</select>
+
+<select id="findProjectByPhone" parameterType="java.lang.String" resultType="com.highwebsite.pojo.T_CAND_IN_3">
+	SELECT * from T_CAND_IN_3 where null1=#{value}
+</select>
+
+<update id="UpdateProjectById" parameterType="com.highwebsite.pojo.T_CAND_IN_3">
+	UPDATE 
+		T_CAND_IN_3 
+	set 
+		project_name=#{project_name},
+		null2=#{null2},
+		start_time=#{start_time},
+		end_time=#{end_time},
+		project_profile=#{project_profile},
+		null1=#{null1}
+	where 
+		id=#{id}
+</update>
+
+<insert id="InsertProjectByPhone" parameterType="com.highwebsite.pojo.T_CAND_IN_3">
+	insert into T_CAND_IN_3(project_name,null2,start_time,end_time,project_profile,null1) 
+	VALUES (#{project_name},#{null2},#{start_time},#{end_time},#{project_profile},#{null1})
+</insert>
+
+<select id="findProjectById" parameterType="Integer" resultType="com.highwebsite.pojo.T_CAND_IN_3">
+	SELECT * from T_CAND_IN_3 where id=#{value}
+</select>
+
+<select id="findOpusByPhone" parameterType="java.lang.String" resultType="com.highwebsite.pojo.T_CAND_IN_3">
+	SELECT * from T_CAND_IN_3 where null1=#{value}
+</select>
+
+<update id="UpdateOpusById" parameterType="com.highwebsite.pojo.T_CAND_IN_3">
+	update 
+		T_CAND_IN_3 
+	set 
+		null3=#{null3},
+		null4=#{null4} 
+	where 
+		id=#{id}
+</update>
+
+<select id="findOpusById" parameterType="Integer" resultType="com.highwebsite.pojo.T_CAND_IN_3">
+	SELECT * from T_CAND_IN_3 where id=#{id}
+</select>
+
+<insert id="InsertOpusByPhone" parameterType="com.highwebsite.pojo.T_CAND_IN_3">
+	insert into T_CAND_IN_3(null1,null3,null4) values (#{null1},#{null3},#{null4})
+</insert>
+
+<select id="findself_descriptionByNull4" parameterType="java.lang.String" resultType="java.lang.String">
+	SELECT self_description FROM T_CAND_IN_1 WHERE null4=#{value}
+</select>
+
+<update id="updateself_descriptionByNull4" parameterType="com.highwebsite.pojo.T_CAND_IN_1">
+	UPDATE T_CAND_IN_1 set self_description=#{self_description} where null4=#{null4}
+</update>
+
+<select id="findexpectedByNull4" parameterType="java.lang.String" resultType="com.highwebsite.pojo.T_CAND_IN_1">
+	select * from T_CAND_IN_1 WHERE null4=#{null4}
+</select>
+
+<update id="updateexpectedByNull4" parameterType="com.highwebsite.pojo.T_CAND_IN_1">
+	UPDATE 
+		T_CAND_IN_1
+	set 
+		expected_salary=#{expected_salary},
+		position_type=#{position_type},
+		supplement=#{supplement},
+		null5=#{null5},
+		position_applied=#{position_applied} 
+	where 
+		null4=#{null4}
+</update>
+	
+</mapper>

@@ -1,0 +1,14 @@
+com\highwebsite\service\CompanyDetailsService.class
+com\highwebsite\service\impl\JobListServiceImpl.class
+com\highwebsite\service\impl\DoaTDrcServiceImpl.class
+com\highwebsite\service\loginAndRegisterService.class
+com\highwebsite\service\impl\CompanyListServiceImpl.class
+com\highwebsite\service\impl\CompanyDetailsServiceImpl.class
+com\highwebsite\service\ResumeService.class
+com\highwebsite\service\impl\IndexServiceImpl.class
+com\highwebsite\service\impl\ResumeServiceImpl.class
+com\highwebsite\service\IndexService.class
+com\highwebsite\service\JobListService.class
+com\highwebsite\service\DoaTDrcService.class
+com\highwebsite\service\CompanyListService.class
+com\highwebsite\service\impl\loginAndRegisterServiceImpl.class

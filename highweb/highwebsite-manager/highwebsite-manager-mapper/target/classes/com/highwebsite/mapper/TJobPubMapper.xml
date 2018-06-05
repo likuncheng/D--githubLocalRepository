@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.highwebsite.mapper.TJobPubMapper" >
+  <resultMap id="BaseResultMap" type="com.highwebsite.pojo.TJobPub" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="release_time" property="releaseTime" jdbcType="TIMESTAMP" />
+    <result column="salary" property="salary" jdbcType="DOUBLE" />
+    <result column="experience_required" property="experienceRequired" jdbcType="CHAR" />
+    <result column="education_required" property="educationRequired" jdbcType="CHAR" />
+    <result column="job_description" property="jobDescription" jdbcType="VARCHAR" />
+    <result column="job_required" property="jobRequired" jdbcType="VARCHAR" />
+    <result column="job_label" property="jobLabel" jdbcType="VARCHAR" />
+    <result column="is_exigency" property="isExigency" jdbcType="CHAR" />
+    <result column="job_category" property="jobCategory" jdbcType="CHAR" />
+    <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="data_date" property="dataDate" jdbcType="TIMESTAMP" />
+    <result column="null1" property="null1" jdbcType="VARCHAR" />
+    <result column="null2" property="null2" jdbcType="VARCHAR" />
+    <result column="null3" property="null3" jdbcType="VARCHAR" />
+    <result column="null4" property="null4" jdbcType="VARCHAR" />
+    <result column="null5" property="null5" jdbcType="VARCHAR" />
+    <result column="null6" property="null6" jdbcType="VARCHAR" />
+    <result column="null7" property="null7" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, company_id, company_name, job, release_time, salary, experience_required, education_required, 
+    job_description, job_required, job_label, is_exigency, job_category, start_date, 
+    end_date, data_date, null1, null2, null3, null4, null5, null6, null7
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.highwebsite.pojo.TJobPubExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from T_JOB_PUB
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_JOB_PUB
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T_JOB_PUB
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.highwebsite.pojo.TJobPubExample" >
+    delete from T_JOB_PUB
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.highwebsite.pojo.TJobPub" >
+    insert into T_JOB_PUB (id, company_id, company_name, 
+      job, release_time, salary, 
+      experience_required, education_required, job_description, 
+      job_required, job_label, is_exigency, 
+      job_category, start_date, end_date, 
+      data_date, null1, null2, 
+      null3, null4, null5, 
+      null6, null7)
+    values (#{id,jdbcType=INTEGER}, #{companyId,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, 
+      #{job,jdbcType=VARCHAR}, #{releaseTime,jdbcType=TIMESTAMP}, #{salary,jdbcType=DOUBLE}, 
+      #{experienceRequired,jdbcType=CHAR}, #{educationRequired,jdbcType=CHAR}, #{jobDescription,jdbcType=VARCHAR}, 
+      #{jobRequired,jdbcType=VARCHAR}, #{jobLabel,jdbcType=VARCHAR}, #{isExigency,jdbcType=CHAR}, 
+      #{jobCategory,jdbcType=CHAR}, #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, 
+      #{dataDate,jdbcType=TIMESTAMP}, #{null1,jdbcType=VARCHAR}, #{null2,jdbcType=VARCHAR}, 
+      #{null3,jdbcType=VARCHAR}, #{null4,jdbcType=VARCHAR}, #{null5,jdbcType=VARCHAR}, 
+      #{null6,jdbcType=VARCHAR}, #{null7,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.highwebsite.pojo.TJobPub" >
+    insert into T_JOB_PUB
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="job != null" >
+        job,
+      </if>
+      <if test="releaseTime != null" >
+        release_time,
+      </if>
+      <if test="salary != null" >
+        salary,
+      </if>
+      <if test="experienceRequired != null" >
+        experience_required,
+      </if>
+      <if test="educationRequired != null" >
+        education_required,
+      </if>
+      <if test="jobDescription != null" >
+        job_description,
+      </if>
+      <if test="jobRequired != null" >
+        job_required,
+      </if>
+      <if test="jobLabel != null" >
+        job_label,
+      </if>
+      <if test="isExigency != null" >
+        is_exigency,
+      </if>
+      <if test="jobCategory != null" >
+        job_category,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="dataDate != null" >
+        data_date,
+      </if>
+      <if test="null1 != null" >
+        null1,
+      </if>
+      <if test="null2 != null" >
+        null2,
+      </if>
+      <if test="null3 != null" >
+        null3,
+      </if>
+      <if test="null4 != null" >
+        null4,
+      </if>
+      <if test="null5 != null" >
+        null5,
+      </if>
+      <if test="null6 != null" >
+        null6,
+      </if>
+      <if test="null7 != null" >
+        null7,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="releaseTime != null" >
+        #{releaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="salary != null" >
+        #{salary,jdbcType=DOUBLE},
+      </if>
+      <if test="experienceRequired != null" >
+        #{experienceRequired,jdbcType=CHAR},
+      </if>
+      <if test="educationRequired != null" >
+        #{educationRequired,jdbcType=CHAR},
+      </if>
+      <if test="jobDescription != null" >
+        #{jobDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="jobRequired != null" >
+        #{jobRequired,jdbcType=VARCHAR},
+      </if>
+      <if test="jobLabel != null" >
+        #{jobLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="isExigency != null" >
+        #{isExigency,jdbcType=CHAR},
+      </if>
+      <if test="jobCategory != null" >
+        #{jobCategory,jdbcType=CHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataDate != null" >
+        #{dataDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="null1 != null" >
+        #{null1,jdbcType=VARCHAR},
+      </if>
+      <if test="null2 != null" >
+        #{null2,jdbcType=VARCHAR},
+      </if>
+      <if test="null3 != null" >
+        #{null3,jdbcType=VARCHAR},
+      </if>
+      <if test="null4 != null" >
+        #{null4,jdbcType=VARCHAR},
+      </if>
+      <if test="null5 != null" >
+        #{null5,jdbcType=VARCHAR},
+      </if>
+      <if test="null6 != null" >
+        #{null6,jdbcType=VARCHAR},
+      </if>
+      <if test="null7 != null" >
+        #{null7,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.highwebsite.pojo.TJobPubExample" resultType="java.lang.Integer" >
+    select count(*) from T_JOB_PUB
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update T_JOB_PUB
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyId != null" >
+        company_id = #{record.companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyName != null" >
+        company_name = #{record.companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.job != null" >
+        job = #{record.job,jdbcType=VARCHAR},
+      </if>
+      <if test="record.releaseTime != null" >
+        release_time = #{record.releaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.salary != null" >
+        salary = #{record.salary,jdbcType=DOUBLE},
+      </if>
+      <if test="record.experienceRequired != null" >
+        experience_required = #{record.experienceRequired,jdbcType=CHAR},
+      </if>
+      <if test="record.educationRequired != null" >
+        education_required = #{record.educationRequired,jdbcType=CHAR},
+      </if>
+      <if test="record.jobDescription != null" >
+        job_description = #{record.jobDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobRequired != null" >
+        job_required = #{record.jobRequired,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobLabel != null" >
+        job_label = #{record.jobLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isExigency != null" >
+        is_exigency = #{record.isExigency,jdbcType=CHAR},
+      </if>
+      <if test="record.jobCategory != null" >
+        job_category = #{record.jobCategory,jdbcType=CHAR},
+      </if>
+      <if test="record.startDate != null" >
+        start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endDate != null" >
+        end_date = #{record.endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dataDate != null" >
+        data_date = #{record.dataDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.null1 != null" >
+        null1 = #{record.null1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null2 != null" >
+        null2 = #{record.null2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null3 != null" >
+        null3 = #{record.null3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null4 != null" >
+        null4 = #{record.null4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null5 != null" >
+        null5 = #{record.null5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null6 != null" >
+        null6 = #{record.null6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.null7 != null" >
+        null7 = #{record.null7,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update T_JOB_PUB
+    set id = #{record.id,jdbcType=INTEGER},
+      company_id = #{record.companyId,jdbcType=VARCHAR},
+      company_name = #{record.companyName,jdbcType=VARCHAR},
+      job = #{record.job,jdbcType=VARCHAR},
+      release_time = #{record.releaseTime,jdbcType=TIMESTAMP},
+      salary = #{record.salary,jdbcType=DOUBLE},
+      experience_required = #{record.experienceRequired,jdbcType=CHAR},
+      education_required = #{record.educationRequired,jdbcType=CHAR},
+      job_description = #{record.jobDescription,jdbcType=VARCHAR},
+      job_required = #{record.jobRequired,jdbcType=VARCHAR},
+      job_label = #{record.jobLabel,jdbcType=VARCHAR},
+      is_exigency = #{record.isExigency,jdbcType=CHAR},
+      job_category = #{record.jobCategory,jdbcType=CHAR},
+      start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      end_date = #{record.endDate,jdbcType=TIMESTAMP},
+      data_date = #{record.dataDate,jdbcType=TIMESTAMP},
+      null1 = #{record.null1,jdbcType=VARCHAR},
+      null2 = #{record.null2,jdbcType=VARCHAR},
+      null3 = #{record.null3,jdbcType=VARCHAR},
+      null4 = #{record.null4,jdbcType=VARCHAR},
+      null5 = #{record.null5,jdbcType=VARCHAR},
+      null6 = #{record.null6,jdbcType=VARCHAR},
+      null7 = #{record.null7,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.highwebsite.pojo.TJobPub" >
+    update T_JOB_PUB
+    <set >
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        job = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="releaseTime != null" >
+        release_time = #{releaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="salary != null" >
+        salary = #{salary,jdbcType=DOUBLE},
+      </if>
+      <if test="experienceRequired != null" >
+        experience_required = #{experienceRequired,jdbcType=CHAR},
+      </if>
+      <if test="educationRequired != null" >
+        education_required = #{educationRequired,jdbcType=CHAR},
+      </if>
+      <if test="jobDescription != null" >
+        job_description = #{jobDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="jobRequired != null" >
+        job_required = #{jobRequired,jdbcType=VARCHAR},
+      </if>
+      <if test="jobLabel != null" >
+        job_label = #{jobLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="isExigency != null" >
+        is_exigency = #{isExigency,jdbcType=CHAR},
+      </if>
+      <if test="jobCategory != null" >
+        job_category = #{jobCategory,jdbcType=CHAR},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataDate != null" >
+        data_date = #{dataDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="null1 != null" >
+        null1 = #{null1,jdbcType=VARCHAR},
+      </if>
+      <if test="null2 != null" >
+        null2 = #{null2,jdbcType=VARCHAR},
+      </if>
+      <if test="null3 != null" >
+        null3 = #{null3,jdbcType=VARCHAR},
+      </if>
+      <if test="null4 != null" >
+        null4 = #{null4,jdbcType=VARCHAR},
+      </if>
+      <if test="null5 != null" >
+        null5 = #{null5,jdbcType=VARCHAR},
+      </if>
+      <if test="null6 != null" >
+        null6 = #{null6,jdbcType=VARCHAR},
+      </if>
+      <if test="null7 != null" >
+        null7 = #{null7,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.highwebsite.pojo.TJobPub" >
+    update T_JOB_PUB
+    set company_id = #{companyId,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      job = #{job,jdbcType=VARCHAR},
+      release_time = #{releaseTime,jdbcType=TIMESTAMP},
+      salary = #{salary,jdbcType=DOUBLE},
+      experience_required = #{experienceRequired,jdbcType=CHAR},
+      education_required = #{educationRequired,jdbcType=CHAR},
+      job_description = #{jobDescription,jdbcType=VARCHAR},
+      job_required = #{jobRequired,jdbcType=VARCHAR},
+      job_label = #{jobLabel,jdbcType=VARCHAR},
+      is_exigency = #{isExigency,jdbcType=CHAR},
+      job_category = #{jobCategory,jdbcType=CHAR},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      data_date = #{dataDate,jdbcType=TIMESTAMP},
+      null1 = #{null1,jdbcType=VARCHAR},
+      null2 = #{null2,jdbcType=VARCHAR},
+      null3 = #{null3,jdbcType=VARCHAR},
+      null4 = #{null4,jdbcType=VARCHAR},
+      null5 = #{null5,jdbcType=VARCHAR},
+      null6 = #{null6,jdbcType=VARCHAR},
+      null7 = #{null7,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

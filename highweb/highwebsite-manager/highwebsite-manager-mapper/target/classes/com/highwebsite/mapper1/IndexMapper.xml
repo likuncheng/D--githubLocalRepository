@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.highwebsite.mapper1.IndexMapper" >
+
+   <select id="findAllJobs"  resultType="com.highwebsite.pojo.T_JOB_PUB">
+   		select * from T_JOB_PUB
+   </select>
+   
+   <select id="findJobsByCategory" parameterType="com.highwebsite.pojo.T_JOB_PUB" resultType="com.highwebsite.pojo.T_JOB_PUB">
+   		select * from T_JOB_PUB where job_category=#{job_category}
+   </select>
+  
+  <select id="findAllT_ADs" resultType="com.highwebsite.pojo.T_AD">
+  		select * from T_AD
+  </select>
+  
+  <select id="findT_Com_InfoByLocation" parameterType="com.highwebsite.pojo.T_Com_Info" resultType="com.highwebsite.pojo.T_Com_Info">
+		select * from T_COM_INFO where region=#{region}
+  </select>
+  
+  <select id="findT_Com_InfoByLogo" parameterType="com.highwebsite.pojo.T_Com_Info" resultType="com.highwebsite.pojo.T_Com_Info">
+		select * from T_COM_INFO where logo=#{logo}
+  </select>
+  
+  <select id="findIndexJobCompany" parameterType="com.highwebsite.pojo.IndexJobCompany" resultType="com.highwebsite.pojo.IndexJobCompany">
+		select 
+			T_JOB_PUB.job,
+			T_JOB_PUB.education_required,
+			T_JOB_PUB.job_category,
+			T_COM_INFO.company_id,
+			T_COM_INFO.logo,
+			T_COM_INFO.company_name,
+			T_COM_INFO.industry_categroy,
+			T_COM_INFO.city 
+		from 
+			T_JOB_PUB,
+			T_COM_INFO 
+		where 
+			T_JOB_PUB.company_id=T_COM_INFO.company_id 
+		AND T_JOB_PUB.job_category=#{job_category};
+  </select>
+  
+  <select id="findAllActive" parameterType="com.highwebsite.pojo.T_ACT" resultType="com.highwebsite.pojo.T_ACT">
+  		SELECT * FROM T_ACT;
+  </select>
+  
+  <select id="findT_Com_InfoVoByJobAndCompanyname" parameterType="com.highwebsite.pojo.T_Com_InfoVo" resultType="com.highwebsite.pojo.T_Com_InfoVo">
+  		select 
+			T_COM_INFO.*,
+			T_JOB_PUB.job,
+			T_JOB_PUB.salary,
+			T_JOB_PUB.education_required,
+			T_JOB_PUB.experience_required,
+			T_JOB_PUB.job_required,
+			T_JOB_PUB.release_time,
+			T_JOB_PUB.job_description,
+			T_JOB_PUB.job_label,
+			T_JOB_PUB.null1 as null11,
+			T_JOB_PUB.null4 as null41
+		FROM 
+			T_COM_INFO,T_JOB_PUB 
+		WHERE 
+			T_COM_INFO.company_id=T_JOB_PUB.company_id
+			AND T_JOB_PUB.job=#{job} 
+			AND T_COM_INFO.company_name=#{company_name}
+  </select>
+  
+  <select id="findT_Com_InfoVoByJob" parameterType="com.highwebsite.pojo.T_Com_InfoVo" resultType="com.highwebsite.pojo.T_Com_InfoVo">
+  		select 
+				T_JOB_PUB.job,
+				T_JOB_PUB.salary,
+				T_JOB_PUB.education_required,
+				T_JOB_PUB.experience_required,
+				T_JOB_PUB.job_required,
+				T_JOB_PUB.release_time,
+				T_JOB_PUB.job_description,
+				T_JOB_PUB.job_label,
+				T_COM_INFO.*
+		FROM
+				T_COM_INFO,T_JOB_PUB
+		where 
+				T_COM_INFO.company_id=T_JOB_PUB.company_id
+				AND T_JOB_PUB.job=#{job};
+  </select>
+  
+  <resultMap type="com.highwebsite.pojo.CompanyDetails" id="CompanyDetailsMap">
+  	<id column="company_id" property="company_id"/>
+  	<result column="company_name" property="company_name"/>
+  	<result column="company_type" property="company_type"/>
+  	<result column="industry_categroy" property="industry_categroy"/>
+  	<result column="company_scale" property="company_scale"/>
+  	<result column="company_representative_name" property="company_representative_name"/>
+  	<result column="contact_position" property="contact_position"/>
+  	<result column="contact_phone" property="contact_phone"/>
+  	<result column="logo" property="logo"/>
+  	<result column="company_profile" property="company_profile"/>
+  	<result column="provence" property="provence"/>
+  	<result column="city" property="city"/>
+  	<result column="region" property="region"/>
+  	<result column="street" property="street"/>
+  	<result column="certification" property="certification"/>
+  	<result column="vip" property="vip"/>
+  	<result column="md5_1" property="md5_1"/>
+  	<result column="md5_2" property="md5_2"/>
+  	<result column="register_id" property="register_id"/>
+  	<result column="job_count" property="job_count"/>
+  	<result column="activity_degree" property="activity_degree"/>
+  	<result column="start_date" property="start_date"/>
+  	<result column="end_date" property="end_date"/>
+  	<result column="data_date" property="data_date"/>
+  	<result column="null1" property="null1"/>
+  	<result column="null2" property="null2"/>
+  	<result column="null3" property="null3"/>
+  	<result column="null4" property="null4"/>
+  	<result column="null5" property="null5"/>  	
+  	<collection property="joblist" ofType="com.highwebsite.pojo.T_JOB_PUBVo">
+  		<id column="id" property="id"/>
+  		<result column="company_id1" property="company_id"/>
+  		<result column="company_name1" property="company_name"/>
+  		<result column="job" property="job"/>
+  		<result column="release_time" property="release_time"/>
+  		<result column="salary" property="salary"/>
+  		<result column="experience_required" property="experience_required"/>
+  		<result column="education_required" property="education_required"/>
+  		<result column="job_description" property="job_description"/>
+  		<result column="job_required" property="job_required"/>
+  		<result column="job_label" property="job_label"/>
+  		<result column="is_exigency" property="is_exigency"/>
+  		<result column="job_category" property="job_category"/>
+  		<result column="start_date1" property="start_date"/>
+  		<result column="end_date1" property="end_date"/>
+  		<result column="data_date1" property="data_date"/>
+  		<result column="null11" property="null1"/>
+  		<result column="null21" property="null2"/>
+  		<result column="null31" property="null3"/>
+  		<result column="null41" property="null4"/>
+  		<result column="null51" property="null5"/>
+  		<result column="null6" property="null6"/>
+  		<result column="null7" property="null7"/>
+  		<collection property="evalist" ofType="com.highwebsite.pojo.T_INT_EVA">
+	  		<id column="id1" property="id"/>
+	  		<result column="company_id2" property="company_id"/>
+	  		<result column="company_name2" property="company_name"/>
+	  		<result column="application" property="application"/>
+	  		<result column="interview_job" property="interview_job"/>
+	  		<result column="dot" property="dot"/>
+	  		<result column="overall" property="overall"/>
+	  		<result column="date" property="date"/>
+	  		<result column="interview_process" property="interview_process"/>
+	  		<result column="other" property="other"/>
+	  		<result column="overall_score" property="overall_score"/>
+	  		<result column="description_score" property="description_score"/>
+	  		<result column="interviewer_score" property="interviewer_score"/>
+	  		<result column="environment_score" property="environment_score"/>
+	  		<result column="p_overall_score" property="p_overall_score"/>
+	  		<result column="offline" property="offline"/>
+	  		<result column="start_date2" property="start_date"/>
+	  		<result column="end_date2" property="end_date"/>
+	  		<result column="data_date2" property="data_date"/>
+	  		<result column="null12" property="null1"/>
+	  		<result column="null22" property="null2"/>
+	  		<result column="null32" property="null3"/>
+	  		<result column="null42" property="null4"/>
+	  		<result column="null52" property="null5"/>
+	  	</collection>
+  	</collection>  	  	
+  </resultMap>
+  
+  <select id="findCompanyDetails" parameterType="java.lang.String" resultMap="CompanyDetailsMap">
+  	select 
+		T_COM_INFO.*,
+		T_JOB_PUB.job,
+		T_JOB_PUB.salary,
+		T_JOB_PUB.education_required,
+		T_JOB_PUB.experience_required,
+		T_JOB_PUB.job_required,
+		T_JOB_PUB.release_time,
+		T_JOB_PUB.null1 as null11,
+		T_INT_EVA.company_id as company_id2,
+		T_INT_EVA.company_name as company_name2,
+		T_INT_EVA.application,
+		T_INT_EVA.interview_job,
+		T_INT_EVA.dot,
+		T_INT_EVA.overall,
+		T_INT_EVA.date,
+		T_INT_EVA.interview_process,
+		T_INT_EVA.other,
+		T_INT_EVA.overall_score,
+		T_INT_EVA.description_score,
+		T_INT_EVA.interviewer_score,
+		T_INT_EVA.environment_score,
+		T_INT_EVA.p_overall_score,
+		T_INT_EVA.offline,
+		T_INT_EVA.start_date as start_date2,
+		T_INT_EVA.end_date as end_date2,
+		T_INT_EVA.data_date as data_date2
+	FROM 
+		T_COM_INFO,
+		T_JOB_PUB,
+		T_INT_EVA 
+	 WHERE 
+	 	T_COM_INFO.company_name=#{company_name}
+	 AND 
+		T_JOB_PUB.company_name=T_COM_INFO.company_name 
+	 AND 
+		T_INT_EVA.interview_job=T_JOB_PUB.job  
+	 AND
+		T_INT_EVA.company_name=T_COM_INFO.company_name
+
+  </select>
+  
+  <select id="findJobsByName" parameterType="java.lang.String" resultType="com.highwebsite.pojo.T_JOB_PUBListVo">
+  	select 
+		T_JOB_PUB.*,
+		T_COM_INFO.company_name as company_name1,
+		T_COM_INFO.company_type,
+		T_COM_INFO.industry_categroy,
+		T_COM_INFO.city,
+		T_COM_INFO.activity_degree,
+		T_COM_INFO.logo
+	FROM 
+		T_JOB_PUB,
+		T_COM_INFO 
+	WHERE 
+		T_JOB_PUB.company_name=T_COM_INFO.company_name 
+	AND 
+		T_JOB_PUB.job LIKE '%${value}%'
+  </select>
+  
+  <select id="findCompanysByName" parameterType="java.lang.String" resultType="com.highwebsite.pojo.T_Com_Info">
+  	select * from T_COM_INFO where company_name like '%${value}%'
+  </select>
+  		
+</mapper>
